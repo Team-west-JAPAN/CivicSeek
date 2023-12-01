@@ -27,12 +27,25 @@ timeout $timeout_max git clone https://github.com/Team-west-JAPAN/CivicSeek.git 
     || echo "Maybe you're messing with your proxy settings...(._.)b"
 
 # configure your environment
-cd CivicSeek # move to Backend dir
+cd CivicSeek # move into project dir
 python -m venv venv # create virtual environment for python
 source ./venv/bin/activate # activate venv
 pip install -r requirements.txt # install required packages
-python regenerateSecretKey.py
-python manage.py migrate
+python regenerateSecretKey.py # パスワードのハッシュ化等に使われる変数の生成
+python manage.py migrate # データベース作成
 
 echo "done(._.)b!..." # print end message
+
+
+# ------------------------------ END ------------------------------
+
+# 以下はproxyの関係でインストールorクローンできない人向け
+
+# proxy setting for `git` and `pip`
+git config --global http.proxy http://wwwproxy.kanazawa-it.ac.jp:8080
+pip config set global.proxy http://wwwproxy.kanazawa-it.ac.jp:8080
+
+# プロキシ解除用
+# $ `git config --global --unset http.proxy`
+# $ `pip config unset global.proxy`
 ```
