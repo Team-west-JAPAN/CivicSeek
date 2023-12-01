@@ -16,7 +16,7 @@ def create_account_done(request):
 
 
 def create_an_account(request):
-    return render(request, 'html/create_an_acccount.html')
+    return render(request, 'html/create_an_account.html')
 
 
 def edit_profile(request):
