@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'topics',
     'django_bootstrap5',
     'ranking',
+    'testapp',
 ]
 
 MIDDLEWARE = [
