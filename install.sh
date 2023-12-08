@@ -19,5 +19,6 @@ cd Backend # move to Backend dir
 python3 -m venv venv # create virtual environment for python
 source ./venv/bin/activate # activate venv
 pip install -r requirements.txt # install required packages
+python3 ./manage.py migrate # migrate DB
 
 echo "done(._.)b!..." # print end message
