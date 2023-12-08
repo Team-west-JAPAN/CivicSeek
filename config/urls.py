@@ -16,14 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from general.views import top
+from civicSeek_app.views import top
 
 urlpatterns = [
     path('', top, name='top'),
     path('admin/', admin.site.urls),
-    path('topics/', include('topics.urls')),
-    path('general/', include('general.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('ranking/', include('ranking.urls')),
-    path('testapp/',include('testapp.urls')),
+    path('civicSeek_app/', include('civicSeek_app.urls')),
 ]

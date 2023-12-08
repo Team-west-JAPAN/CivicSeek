@@ -24,6 +24,10 @@ password_reset_complete_view = PasswordResetCompleteView.as_view(
     template_name='accounts/password_reset_complete.html')
 
 urlpatterns = [
+    # ホーム
+    path('home/', home, name='home'),
+
+
     # アカウント関連
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
@@ -43,9 +47,6 @@ urlpatterns = [
     # ユーザprofile
     path('profile/', profile_view, name='profile_view'),
     path('edit_profile/', edit_profile_view, name='edit_profile_view'),
-
-    # ホーム
-    path('home/', home, name='home'),
 
     path('show_ranking/', show_ranking, name='show_ranking'),
 

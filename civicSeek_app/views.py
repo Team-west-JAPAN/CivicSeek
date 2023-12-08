@@ -1,11 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from topics.models import *
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils.html import escape
 from django.http import HttpResponse
-from topics.models import Topic
-from topics.models import Topic, Comment, Tag
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
@@ -18,7 +15,8 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from accounts.forms import ProfileEdit, SignUpForm, CustomLoginForm
+from civicSeek_app.forms import ProfileEdit, SignUpForm, CustomLoginForm
+from civicSeek_app.models import *
 
 
 # Create your views here.

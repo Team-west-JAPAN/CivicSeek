@@ -10,7 +10,7 @@ PORT=8000
 
 function open-browser() {
     # Wsl2 only                           # ubuntu 22.04 LTS
-    explorer.exe http://"$IP":"$PORT"/ || xdg-open http://"$IP":"$PORT"/
+    explorer.exe http://"$IP":"$PORT"/ # || xdg-open http://"$IP":"$PORT"/
 }
 
 function run() {
