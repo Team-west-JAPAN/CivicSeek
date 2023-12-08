@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import *
 from account_app.views import *
 
-app_name = "accounts"
+app_name = "account_app"
 
 signup_view = SignupView.as_view(template_name='accounts/signup.html')
 login_view = CustomLoginView.as_view()

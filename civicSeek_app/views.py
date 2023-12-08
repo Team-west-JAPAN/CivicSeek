@@ -199,7 +199,7 @@ def ranking(request):
     return render(request, 'html/ranking.html')
 
 
-def showpost(request):
+def showpost(request, topic_id):
     return render(request, 'html/showpost.html')
 
 
