@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'accounts',
     'general',
     'topics',
-
     'django_bootstrap5',
     'ranking',
     'testapp',
+    'civicSeek_app',
 ]
 
 MIDDLEWARE = [
