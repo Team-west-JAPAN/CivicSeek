@@ -21,5 +21,6 @@ from civicSeek_app.views import top
 urlpatterns = [
     path('', top, name='top'),
     path('admin/', admin.site.urls),
+    path('account_app/', include('account_app.urls')),
     path('civicSeek_app/', include('civicSeek_app.urls')),
 ]
