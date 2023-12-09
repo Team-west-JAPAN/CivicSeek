@@ -1,50 +1,52 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    {% block title %}
-
-    {% endblock %}
-    {% block head %}
+    <title>CivicSeek</title>
+    {% bootstrap_css %}
+    {% block extraheader %}
 
     {% endblock %}
   </head>
   <body>
-    <header class="header">
-      <a href="{% url 'afterlogin' %}">
-        <div class="logo">
-          <h1>Civic Seek</h1>
-        </div>
-      </a>
-      {% block header %}
-
-      {% endblock %}
-      <nav class="nav">
-        <ul>
-          <li>
-            <a href="{% url 'toolbar' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a href="/" class="navbar-brand">CivicSeek</a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link text-primary">HOME</a>
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'accounts:logout' %}" class="nav-link">ログアウト</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a href="{% url 'accounts:login' %}" class="nav-link">ログイン</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'accounts:signup' %}" class="nav-link">サインアップ</a>
+            </li>
+          {% endif %}
         </ul>
-        {% block navbar %}
+      </div>
+    </nav>
+    <main>
+      <div class="container mt-4">
+        {% bootstrap_messages %}
+        {% block main %}
 
         {% endblock %}
-      </nav>
-    </header>
-    <main>
-      {% block main %}
-
-      {% endblock %}
+      </div>
     </main>
     <footer>
-      {% block footer %}
+      {% block extrafooter %}
 
       {% endblock %}
     </footer>
+    {% bootstrap_javascript %}
   </body>
-  {% block script %}
-
-  {% endblock %}
 </html>
