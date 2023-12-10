@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
+
     'accounts',
     'general',
     'topics',
-
-    'django_bootstrap5',
     'ranking',
-    # 'testapp',
+
+    'civicSeek_app', # これはフロントと合わせるためのラッパーコード
 ]
 
 MIDDLEWARE = [
