@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_bootstrap5',
+
     'accounts',
     'general',
     'topics',
-
-    'django_bootstrap5',
     'ranking',
-    # 'testapp',
+
+    'civicSeek_app', # フロントと合わせるためのラッパーコード
 ]
 
 MIDDLEWARE = [
@@ -122,14 +123,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# これは仮につけてるだけ、デプロイ時のアパッチやら
+# nginxの設定しだいで変わる
+STATIC_ROOT = '/var/www/exapmle.com/static' 
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'top'
+LOGOUT_REDIRECT_URL = 'top'
 
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
