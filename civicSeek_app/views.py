@@ -46,12 +46,12 @@ def ranking(request):
     '''
     return ranking(request)
 
-def showpost(request):
+def showpost(request, topic_id: int):
     '''
     投稿表示画面をレンダリングする関数だから
     topicsアプリのdetail_topicをラッパー
     '''
-    return detail_topic(request)
+    return detail_topic(request, topic_id)
 
 
 def toolbar(request):
