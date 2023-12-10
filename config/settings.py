@@ -142,3 +142,6 @@ LOGIN_REDIRECT_URL = 'top'
 LOGOUT_REDIRECT_URL = 'top'
 
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+
+TOP_PAGE_NAME = 'beforelogin'

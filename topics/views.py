@@ -5,6 +5,7 @@ from django.utils.html import escape
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from config.settings import TOP_PAGE_NAME
 
 # Create your views here.
 UserModel = get_user_model()
@@ -14,7 +15,7 @@ def detail_topic(request, topic_id):
     '''
     投稿表示画面
     '''
-    template_name = 'topics/detail_topic.html'
+    template_name = 'html/showpost.html'
     topic = Topic.objects.get(pk=topic_id)
 
     if request.method == "POST":
@@ -31,7 +32,7 @@ def detail_topic(request, topic_id):
             '''削除ボタンが押された時
             '''
             topic.delete()
-            return redirect(reverse('home'))
+            return redirect(reverse(TOP_PAGE_NAME)) # トップ画面にリダイレクト
 
     return render(request, template_name, context={'topic': topic})
 
@@ -40,7 +41,7 @@ def create_comment(request, topic_id):
     '''
     投稿表示画面(コメント投稿)
     '''
-    template_name = 'topics/create_comment.html'
+    template_name = 'html/postcomment.html'
     topic = Topic.objects.get(pk=topic_id)
     comments = Comment.objects.filter(commented_to=topic)
     user = request.user # ログインしているユーザーのオブジェクト
@@ -52,14 +53,14 @@ def create_comment(request, topic_id):
         # コメントの格納
         comment_instance = Comment.objects.create(
             comment = request.POST.get('comment'),
-            created_by = user, # change to `created_by = request.user`
+            created_by = user,
             commented_to = topic)
 
         # DBに保存
         comment_instance.save()
 
         # 自分自身にリダイレクトして画面リロード
-        return redirect(reverse('create_comment',args=[topic_id]))
+        return redirect(reverse('postcomment',args=[topic_id]))
 
 
     return render(request, template_name,context={'topic':topic,'comments':comments,'username':user.username})
@@ -100,7 +101,7 @@ def create_topic(request):
         topic.save()
 
         # 成功時はcomplate_create_topicへリダイレクト
-        return redirect('complate_create_topic')
+        return redirect('postdone')
 
     # POST等が場合は以下を実行して、template_nameをレンダリング
     return render(request, template_name,context={"username":user.username})
@@ -110,5 +111,5 @@ def complete_create_topic(request):
     '''
     投稿完了画面
     '''
-    template_name = 'topics/complete_create_topic.html'
+    template_name = 'html/postdone.html'
     return render(request, template_name)
