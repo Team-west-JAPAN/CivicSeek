@@ -2,6 +2,8 @@ from django.shortcuts import render
 from general.views import *
 from ranking.views import *
 from topics.views import *
+from topics.models import *
+
 
 # Create your views here.
 
@@ -12,7 +14,12 @@ def top(request):
     とりあえず、html/beforelogin.htmlをレンダリングする
     今後はtop.htmlを新たに作って、それをレンダリングする
     '''
-    return render(request, 'html/beforelogin.html')
+    topics = Topic.objects.all()  # 存在するすべての投稿された課題
+    context = {
+        'topics': topics,
+    }
+
+    return render(request, 'html/beforelogin.html', context=context)
 
 
 def post(request):
@@ -45,6 +52,7 @@ def ranking(request):
     rankingアプリのrankingをラッパー
     '''
     return ranking(request)
+
 
 def showpost(request, topic_id: int):
     '''
