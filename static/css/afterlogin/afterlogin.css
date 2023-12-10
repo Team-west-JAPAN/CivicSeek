@@ -1,3 +1,5 @@
+
+  
 .header {
     background-color: #333;
     color: white;
@@ -110,130 +112,110 @@ ul li {
     margin: 0;
     padding: 0;
 }
-/* フォームのデザイン */
-.form-wrapper {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f3f3f3;
+
+/* メインコンテナ */
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    grid-template-rows: repeat(100,200px);
+    gap: 20px; /* グリッドアイテム間のギャップ */
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #f8f8f8; /* ライトグレーの背景色 */
+    padding: 20px;
 }
 
-.form-wrapper h1 {
+/* 各グリッドアイテム */
+.wrapper > div {
+    background-color: #ffffff; /* 白の背景色 */
+    border: 2px solid #e1e1e1; /* ライトグレーの境界線 */
+    border-radius: 10px;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    color: #333; /* 濃いグレーのテキスト */
+    font-family: Arial, sans-serif; /* モダンなフォント */
+    font-size: 1.2em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ソフトな影を追加 */
 }
 
-.form-wrapper form {
+/* メディアクエリ：モバイルデバイス用のスタイル調整 */
+@media (max-width: 600px) {
+    .wrapper {
+        grid-template-columns: 1fr; /* モバイルでは1列に */
+    }
+}
+grid-container {
+    position: relative;
+}
+
+.grid-item {
+    /* ここにグリッドアイテムのスタイリング */
+}
+.icons {
+    position: absolute;
+    bottom: -10px; /* グリッドアイテムの外側に配置 */
+    left: 10px; /* 左からの距離 */
     display: flex;
-    flex-direction: column;
 }
-
-.form-item {
-    margin-bottom: 10px;
+.icons a {
+    margin-right: 10px; /* アイコン間のスペース */
+    text-decoration: none;
+    color: black; /* リンクの色 */
 }
-
-.form-item label {
-    margin-bottom: 5px; /* ラベルのマージンを設定 */
-    color: #333; /* ラベルの色を設定 */
+.icons i {
+    margin-right: 5px; /* アイコンとテキストの間隔 */
 }
-
-.form-item input[type="text"],
-.form-item textarea {
+/* モーダルのスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* 背景の透明度調整 */
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
 }
 
-.form-item textarea {
-    height: 150px; /* テキストエリアの高さを設定 */
-    resize: vertical; /* 垂直方向のリサイズのみ許可 */
+.modal-content {
+    background-color: #fefefe;
+    margin: 4% auto;
+    padding: 20px;
+    border-radius: 5px; /* 角を丸くする */
+    width: 50%; /* モーダルの幅を調整 */
+    max-width: 900px;
+    min-height: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* 影の追加 */
+    animation-name: slideIn;
+    animation-duration: 0.4s;
 }
 
-.button-panel {
-    margin-top: 20px;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.button-panel .button {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #5cb85c;
-    border: none;
-    color: white;
-    border-radius: 5px;
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: #4cae4c;
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
 }
 
-.form-footer {
-    text-align: center;
-    margin-top: 20px;
+@keyframes slideIn {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
 }
 
-.form-footer p {
-    margin-bottom: 5px;
-}
 
-.form-footer a {
-    color: #5cb85c;
-    text-decoration: none;
-}
 
-.form-footer a:hover {
-    text-decoration: underline;
-}
 
-/* レスポンシブデザインのためのメディアクエリ */
-@media (max-width: 600px) {
-    .form-wrapper {
-        margin: 20px auto;
-        padding: 10px;
-    }
-
-    .form-item input[type="text"],
-    .form-item textarea {
-        padding: 8px;
-    }
-
-    .button-panel .button {
-        padding: 8px 0;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-    .form-wrapper {
-        margin: 30px auto;
-        padding: 15px;
-    }
-
-    .form-item input[type="text"],
-    .form-item textarea {
-        padding: 10px;
-    }
-
-    .button-panel .button {
-        padding: 10px 0;
-    }
-}
-
-@media (min-width: 1025px) {
-    .form-wrapper {
-        margin: 50px auto;
-        padding: 20px;
-    }
-
-    .form-item input[type="text"],
-    .form-item textarea {
-        padding: 12px;
-    }
-
-    .button-panel .button {
-        padding: 12px 0;
-    }
-}

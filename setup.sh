@@ -10,6 +10,6 @@ python3 regenerateSecretKey.py # regenerate secret key
 
 python3 ./manage.py migrate # migrate DB
 
-python3 manage.py loaddate ./sample_db.json # add Contents of the database
+python3 manage.py loaddata ./sample_db.json # add Contents of the database
 
 python3 manage.py runserver # activate server

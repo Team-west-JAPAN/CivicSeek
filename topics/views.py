@@ -70,7 +70,7 @@ def create_topic(request):
     投稿画面
     '''
     # tepmalteの場所を定義
-    template_name = 'topics/create_topic.html'
+    template_name = 'html/post.html'
     user = request.user # ログインしているユーザーのユーザー名
 
     if request.method == "POST":  # 押されたボタンに関わらずPOSTされた時に実行
