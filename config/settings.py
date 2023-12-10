@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     'django_bootstrap5',
     'ranking',
-    'testapp',
+    # 'testapp',
 ]
 
 MIDDLEWARE = [

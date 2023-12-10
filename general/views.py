@@ -15,13 +15,14 @@ def top(request):
     }
     return render(request, template_name, context)
 
+
 def home(request):
     '''ログイン前・後HOME
     '''
     template_name = 'general/home.html'
     topics = Topic.objects.all()
     context = {
-        'topics':topics
+        'topics': topics
     }
 
-    return render(request,template_name,context)
+    return render(request, template_name, context)
