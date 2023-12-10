@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from general.views import top
+from civicSeek_app.views import top
 
 urlpatterns = [
     path('', top, name='top'),

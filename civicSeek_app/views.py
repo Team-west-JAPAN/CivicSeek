@@ -6,6 +6,15 @@ from topics.views import *
 # Create your views here.
 
 
+def top(request):
+    '''
+    トップ画面をレンダリングする関数だから
+    とりあえず、html/beforelogin.htmlをレンダリングする
+    今後はtop.htmlを新たに作って、それをレンダリングする
+    '''
+    return render(request, 'html/beforelogin.html')
+
+
 def post(request):
     '''
     投稿画面をレンダリングする関数だから
