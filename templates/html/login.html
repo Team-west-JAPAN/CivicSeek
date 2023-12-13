@@ -1,12 +1,25 @@
+<!-- 以下のblockは使用しなくても消さないこと -->
+
 {% extends 'base.html' %}
 {% load static %}
-{% load django_boostrap5 %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  <!-- titleタグを入れる -->
+{% endblock %}
 
 {% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
   <link rel="stylesheet" href="{% url 'css/login.css' %}" />
 {% endblock %}
 
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
 {% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <div class="form-wrapper">
     <h1>ログイン</h1>
     <form>
@@ -33,6 +46,10 @@
   </div>
 {% endblock %}
 
-{% block script %}
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
 
+{% block script %}
+  <!-- JavaScriptを読み込むためのタグを入れる -->
 {% endblock %}
