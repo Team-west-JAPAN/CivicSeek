@@ -1,0 +1,56 @@
+<!-- 以下のblockは使用しなくても消さないこと -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  <!-- titleタグ等を入れる -->
+
+  <!--  例:
+
+  <title>タイトル例</title>
+    
+  -->
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+
+  <!--  例:
+
+  <link rel="stylesheet" href=""/>
+
+  -->
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
+{% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+
+  <!--  例:
+
+
+
+  -->
+
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
+
+  <!--  例:
+
+    <script src=""></script>
+
+  -->
+
+{% endblock %}
