@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django_bootstrap5',
 
     'accounts',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'ranking',
 
     'civicSeek_app', # フロントと合わせるためのラッパーコード
+
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +141,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'top'
-LOGOUT_REDIRECT_URL = 'top'
+LOGIN_REDIRECT_URL = 'beforelogin'
+LOGOUT_REDIRECT_URL = 'beforelogin'
 
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+
+TOP_PAGE_NAME = 'beforelogin'

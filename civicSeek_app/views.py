@@ -6,7 +6,7 @@ from topics.models import *
 
 
 # Create your views here.
-
+# このビューの目標 : 今まで作ってきたバックエンドのラッパーコードを作成し、構造を簡潔にする。
 
 def top(request):
     '''
@@ -26,7 +26,9 @@ def post(request):
     '''
     投稿画面をレンダリングする関数だから
     topicsアプリのcreate_topicsをラッパー
+    # ラッパー先改変完了
     '''
+
     return create_topic(request)
 
 
@@ -34,6 +36,7 @@ def postcomment(request, topic_id: int):
     '''
     コメント画面を投稿する関数だから
     topicsアプリのcreate_commentをラッパー
+    # ラッパー先改変完了
     '''
     return create_comment(request, topic_id)
 
@@ -42,6 +45,7 @@ def postdone(request):
     '''
     投稿完了画面をレンダリングする関数だから
     topicsアプリのcomplete_create_topicをラッパー
+    # ラッパー先改変完了
     '''
     return complete_create_topic(request)
 
@@ -50,14 +54,16 @@ def ranking(request):
     '''
     ランキング画面をレンダリングする関数だから
     rankingアプリのrankingをラッパー
+    # ラッパー先改変完了
     '''
-    return ranking(request)
+    return show_ranking(request)
 
 
 def showpost(request, topic_id: int):
     '''
     投稿表示画面をレンダリングする関数だから
     topicsアプリのdetail_topicをラッパー
+    # ラッパー先改変完了
     '''
     return detail_topic(request, topic_id)
 

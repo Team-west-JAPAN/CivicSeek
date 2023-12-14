@@ -6,4 +6,4 @@ from topics.models import Topic
 
 def show_ranking(request):
     topics = Topic.objects.all().order_by('-like_count')[:3]
-    return render(request, 'ranking/show_ranking.html', context={'topics': topics})
+    return render(request, 'html/ranking.html', context={'topics': topics})
