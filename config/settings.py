@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'ranking',
 
     'civicSeek_app', # フロントと合わせるためのラッパーコード
+
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
