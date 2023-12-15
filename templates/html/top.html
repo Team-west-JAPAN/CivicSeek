@@ -1,0 +1,49 @@
+<!-- 以下のblockは使用しなくても消さないこと -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  <!-- titleタグ等を入れる -->
+  <title>レスポンシブヘッダー</title>
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+  <link rel="stylesheet" href="{% static 'css/beforelogin.css' %}" />
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
+{% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+  <ul>
+    <li>
+      <a href="#"><i class="bi bi-sort-down"></i>昇順</a>
+    </li>
+    <li>
+      <a href="#"><i class="bi bi-heart"></i>いいねした投稿</a>
+    </li>
+  </ul>
+  <div class="wrapper">
+    {% for topic in topics %}
+      <div class="post">
+        <p>{{ topic.title }}</p>
+        <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
+        <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
+{% endblock %}

@@ -19,7 +19,7 @@ def top(request):
         'topics': topics,
     }
 
-    return render(request, 'html/beforelogin.html', context=context)
+    return render(request, 'html/top.html', context=context)
 
 
 def post(request):
