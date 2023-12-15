@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 <!-- 以下のblockは使用しなくても消さないこと -->
-{% comment %}
-  topics : 投稿情報が格納されたのリスト
-{% endcomment %}
+{% comment %}topics : 投稿情報が格納されたのリスト{% endcomment %}
 
 {% load static %}
 {% load django_bootstrap5 %}
@@ -36,6 +34,7 @@
     {% for topic in topics %}
       <div class="post">
         <p>{{ topic.title }}</p>
+        <p>{{ topic.description }}</p>
         <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
         <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
       </div>

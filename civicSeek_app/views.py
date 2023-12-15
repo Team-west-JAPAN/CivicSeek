@@ -161,7 +161,14 @@ def toolbar(request):
     '''
     この関数は作ってなかったな
     '''
-    return render(request, 'html/toolbar.html')
+    user = request.user
+    context = {
+        'username': user.username,
+        'date_joined': user.date_joined,
+        'email': user.email,
+    }
+
+    return render(request, 'html/toolbar.html', context=context)
 
 
 # アカウント関連の話はaccountsに一任ってことで
