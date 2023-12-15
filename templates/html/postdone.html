@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1, width=device-width" />
-  <title>アカウント作成 - Civic Seek</title>
-  <link rel="stylesheet" href="https://team-west-japan.github.io/CivicSeek_static/css/postdone.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-  <header class="header">
-    <a href="../html/afterlogin.html"><div class="logo"><h1>Civic Seek</h1></div></a>
-    <nav class="nav">
-      <ul>
-        <li><a href="../html/toolbar.html"><i class="fa fa-bars" aria-hidden="true"></a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <div class="confirmation-wrapper">
-      <h1>投稿が完了しました</h1>
-      <p>あなたの投稿は正常に処理されました。ありがとうございます！</p>
-      <button onclick="location.href='../html/afterlogin.html'">Homeに戻る</button>
+<!-- 以下のblockは使用しなくても消さないこと -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  <!-- titleタグ等を入れる -->
+  <title>投稿完了画面</title>
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+  <link rel="stylesheet" href="{% static 'css/postdone.css' %}" />
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
+{% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+  <div class="confirmation-wrapper">
+    <h1>投稿が完了しました</h1>
+    <p>あなたの投稿は正常に処理されました。ありがとうございます！</p>
+    {% comment %}これはボタンっぽく装飾しなおすことボタン要素にしないこと{% endcomment %}
+    <a href="{% url 'top' %}" class="">トップ画面に戻る</a>
   </div>
-  
-  </main>
-  </html>
-</html> 
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
+{% endblock %}

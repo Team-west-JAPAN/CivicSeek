@@ -1,15 +1,18 @@
-<!-- 以下のblockは使用しなくても消さないこと -->
-
 {% extends 'base.html' %}
+<!-- 以下のblockは使用しなくても消さないこと -->
+{% comment %}topics : 投稿情報が格納されたのリスト{% endcomment %}
+
 {% load static %}
 {% load django_bootstrap5 %}
 
 {% block title %}
   <!-- titleタグ等を入れる -->
+  <title>レスポンシブヘッダー</title>
 {% endblock %}
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
+  <link rel="stylesheet" href="{% static 'css/beforelogin.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -21,23 +24,21 @@
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <ul>
     <li>
-      <h1>ランキング トップ10(yyyy/mm/dd~yyyy/mm/dd)</h1>
+      <a href="#"><i class="bi bi-sort-down"></i>昇順</a>
+    </li>
+    <li>
+      <a href="#"><i class="bi bi-heart"></i>いいねした投稿</a>
     </li>
   </ul>
-  <div class="container">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-  </div>
-
-  <div class="long-boxes">
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
+  <div class="wrapper">
+    {% for topic in topics %}
+      <div class="post">
+        <p>{{ topic.title }}</p>
+        <p>{{ topic.description }}</p>
+        <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
+        <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
+      </div>
+    {% endfor %}
   </div>
 {% endblock %}
 

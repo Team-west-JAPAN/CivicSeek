@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django_bootstrap5',
 
     'accounts',
@@ -44,7 +45,9 @@ INSTALLED_APPS = [
     'topics',
     'ranking',
 
-    'civicSeek_app', # フロントと合わせるためのラッパーコード
+    'civicSeek_app',  # フロントと合わせるためのラッパーコード
+
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +130,7 @@ STATIC_URL = '/static/'
 
 # これは仮につけてるだけ、デプロイ時のアパッチやら
 # nginxの設定しだいで変わる
-STATIC_ROOT = '/var/www/exapmle.com/static' 
+STATIC_ROOT = '/var/www/exapmle.com/static'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
@@ -138,7 +141,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'top'
-LOGOUT_REDIRECT_URL = 'top'
+TOP_PAGE_NAME = 'top'
 
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+LOGIN_REDIRECT_URL = TOP_PAGE_NAME
+LOGOUT_REDIRECT_URL = TOP_PAGE_NAME
+
+# これは認証バックエンドの処理でemailを使うようにするための設定
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] 

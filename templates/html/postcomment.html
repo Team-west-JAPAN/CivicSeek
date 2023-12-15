@@ -1,66 +1,57 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <title>レスポンシブヘッダー</title>
-    <link rel="stylesheet" href="https://team-west-japan.github.io/CivicSeek_static/css/postcomment.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  </head>
-  <body>
-    <header class="header">
-      <a href="{% url 'afterlogin' %}">
-        <div class="logo">
-          <h1>Civic Seek</h1>
-        </div>
-      </a>
-      <form method="get" action="#" class="search_container">
-        <input type="text" size="25" placeholder="キーワード検索" />
-        <input type="submit" value="&#xf002" />
-      </form>
-      <button class="post-button" onclick="location.href='{% url 'post' %}'"><i class="bi bi-plus-lg">投稿</i></button>
+<!-- 以下のblockは使用しなくても消さないこと -->
 
-      <nav class="nav">
-        <ul>
-          <li>
-            <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
-          </li>
-          <li>
-            <a href="{% url 'toolbar' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div class="post-and-comments-grid">
-        <div class="post-section">
-          <h2>投稿タイトル</h2>
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
 
-          <p>ここに投稿の詳細が表示されます。</p>
-        </div>
-        <div class="comments-section">
-          <h3>コメント</h3>
-          <div class="comment">
-            <p>
-              <strong>ユーザー名:</strong> この投稿は素晴らしいです！
-            </p>
-          </div>
-          <div class="comment">
-            <p>
-              <strong>別のユーザー:</strong> 質問があります...
-            </p>
-          </div>
-          <!-- 他のコメントもここに追加 -->
-          <form action="" method="POST">
-            <textarea placeholder="コメントを追加"></textarea>
-            <button type="button">送信</button>
-          </form>
-        </div>
+{% block title %}
+  <!-- titleタグ等を入れる -->
+  <title>レスポンシブヘッダー</title>
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+  <link rel="stylesheet" href="{% static 'css/postcomment.css' %}" />
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
+{% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+  <div class="post-and-comments-grid">
+    <div class="post-section">
+      <h2>投稿タイトル</h2>
+
+      <p>ここに投稿の詳細が表示されます。</p>
+    </div>
+    <div class="comments-section">
+      <h3>コメント</h3>
+      <div class="comment">
+        <p>
+          <strong>ユーザー名:</strong> この投稿は素晴らしいです！
+        </p>
       </div>
-    </main>
-  </body>
-</html>
+      <div class="comment">
+        <p>
+          <strong>別のユーザー:</strong> 質問があります...
+        </p>
+      </div>
+      <!-- 他のコメントもここに追加 -->
+      <form action="" method="POST">
+        <textarea placeholder="コメントを追加"></textarea>
+        <button type="button">送信</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
+{% endblock %}
