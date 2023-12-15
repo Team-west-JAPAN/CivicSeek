@@ -8,12 +8,12 @@
   <!-- titleタグ等を入れる -->
 
   <title>会員登録完了画面- Civic Seek</title>
-
 {% endblock %}
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/create_account_done.css' %}" />
+  <!-- ここのcssはどれになるのだ？ -->
+  <link rel="stylesheet" href="{% static 'css/create_done.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -27,7 +27,7 @@
     <h1>アカウント作成完了!</h1>
     <a class="nav-link" href="{% url 'top' %}">HOME</a>
 
-    <!--   
+    <!--    
 
     <p>ご登録のメールアドレス宛に認証コードを送信しました。コードを以下に入力してください。</p>
     <form action="/path/to/verification/script" method="post">
@@ -41,7 +41,7 @@
       </div>
     </form>
 
-     -->
+      -->
   </div>
 {% endblock %}
 
