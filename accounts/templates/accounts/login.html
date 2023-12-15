@@ -22,7 +22,8 @@
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <div class="form-wrapper">
     <h1>ログイン</h1>
-    <form>
+    <form method="POST">
+      {% csrf_token %}
       {{ form.as_p }}
       <!--  
 
@@ -36,6 +37,7 @@
       </div>
 
       -->
+
 
       <div class="button-panel">
         <button type="submit" class="button">Sign In</button>

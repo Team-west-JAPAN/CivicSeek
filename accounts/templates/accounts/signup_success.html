@@ -1,7 +1,54 @@
+<!-- 以下のblockは使用しなくても消さないこと -->
+
 {% extends 'base.html' %}
+{% load static %}
 {% load django_bootstrap5 %}
 
+{% block title %}
+  <!-- titleタグ等を入れる -->
+
+  <title>会員登録完了画面- Civic Seek</title>
+
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+  <link rel="stylesheet" href="{% static 'css/create_account_done.css' %}" />
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
 {% block main %}
-    <h1>会員登録成功</h1>
-    <a class="nav-link" href="{% url 'home' %}">HOME</a>
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+  <div class="form-wrapper">
+    <h1>アカウント作成完了!</h1>
+    <a class="nav-link" href="{% url 'top' %}">HOME</a>
+
+    <!--   
+
+    <p>ご登録のメールアドレス宛に認証コードを送信しました。コードを以下に入力してください。</p>
+    <form action="/path/to/verification/script" method="post">
+      {% csrf_token %}
+      <div class="form-item">
+        <label for="verification-code">認証コード</label>
+        <input type="text" name="verification-code" required="required" placeholder="認証コード" />
+      </div>
+      <div class="button-panel">
+        <input type="submit" class="button" value="認証" />
+      </div>
+    </form>
+
+     -->
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
 {% endblock %}
