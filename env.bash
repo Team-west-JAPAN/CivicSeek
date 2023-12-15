@@ -24,7 +24,7 @@ function admin() {
 }
 
 function dj-test() {
-    python3 "$PROJECT_ROOT"/manage.py test
+    python3 "$PROJECT_ROOT"/manage.py test testapp
 }
 
 function migrate() {

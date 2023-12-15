@@ -13,10 +13,10 @@
 {% block main %}
   <div class="form-wrapper">
     <h1>投稿作成</h1>
-    <form action="" method="POST">
+    <form method="POST">
       {% csrf_token %}
       <div class="form-item">
-        <label for="post-title">タイトル</label>
+        <label for="title">タイトル</label>
         <input type="text" name="title" required="required" placeholder="タイトル" />
       </div>
       <div class="form-item">
