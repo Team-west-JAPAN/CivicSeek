@@ -85,7 +85,7 @@
     outline : none;
   }
 .post-button {
-    background-color: #4c61af; /* ボタンの背景色 */
+    background-color: rgb(255, 217, 50); /* ボタンの背景色 */
     color: white; /* ボタンのテキスト色 */
     padding: 10px 24px; /* ボタンのパディング */
     border: none; /* ボタンの境界線を削除 */
