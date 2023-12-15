@@ -22,14 +22,48 @@ def top(request):
     return render(request, 'html/top.html', context=context)
 
 
+# @login_required
 def post(request):
     '''
     投稿画面をレンダリングする関数だから
-    topicsアプリのcreate_topicsをラッパー
     # ラッパー先改変完了
+    # ラッパーの実装は完了
     '''
+    # tepmalteの場所を定義
+    template_name = 'html/post.html'
+    user = request.user  # ログインしているユーザーのユーザー名
 
-    return create_topic(request)
+    if request.method == "POST":  # 押されたボタンに関わらずPOSTされた時に実行
+        '''
+        ここはバリデーションやサニタイズが必要
+        '''
+        # リクエストから入力データを取得
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        # バリデーション : タイトルと説明が空でないことを確認
+        if not title or not description:
+            return HttpResponse("タイトルと説明は必須です.")
+
+        # サニタイズ
+        title = escape(title)
+        description = escape(description)
+
+        # モデルインスタンスの生成
+        topic = Topic.objects.create(
+            title=title,
+            description=description,
+            created_by=user  # ここは変更しないといけない
+        )
+
+        # データベースに保存
+        topic.save()
+
+        # 成功時はcomplate_create_topicへリダイレクト
+        return redirect('postdone')
+
+    # POST等が場合は以下を実行して、template_nameをレンダリング
+    return render(request, template_name, context={"username": user.username})
 
 
 def postcomment(request, topic_id: int):
@@ -38,8 +72,32 @@ def postcomment(request, topic_id: int):
     topicsアプリのcreate_commentをラッパー
     # ラッパー先改変完了
     '''
-    return create_comment(request, topic_id)
+    '''
+    投稿表示画面(コメント投稿)
+    '''
+    template_name = 'html/postcomment.html'
+    topic = Topic.objects.get(pk=topic_id)
+    comments = Comment.objects.filter(commented_to=topic)
+    user = request.user # ログインしているユーザーのオブジェクト
 
+    if request.method == "POST":
+        '''コメントが投稿されたら
+        '''
+
+        # コメントの格納
+        comment_instance = Comment.objects.create(
+            comment = request.POST.get('comment'),
+            created_by = user,
+            commented_to = topic)
+
+        # DBに保存
+        comment_instance.save()
+
+        # 自分自身にリダイレクトして画面リロード
+        return redirect(reverse('postcomment',args=[topic_id]))
+
+
+    return render(request, template_name,context={'topic':topic,'comments':comments,'username':user.username})
 
 def postdone(request):
     '''
@@ -47,7 +105,12 @@ def postdone(request):
     topicsアプリのcomplete_create_topicをラッパー
     # ラッパー先改変完了
     '''
-    return complete_create_topic(request)
+    '''
+    投稿完了画面
+    '''
+    # return complete_create_topic(request)
+    template_name = 'html/postdone.html'
+    return render(request, template_name)
 
 
 def ranking(request):

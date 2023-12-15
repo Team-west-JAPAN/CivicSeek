@@ -17,11 +17,11 @@
       {% csrf_token %}
       <div class="form-item">
         <label for="post-title">タイトル</label>
-        <input type="text" name="post-title" required="required" placeholder="タイトル" />
+        <input type="text" name="title" required="required" placeholder="タイトル" />
       </div>
       <div class="form-item">
         <label for="post-content">内容</label>
-        <textarea name="post-content" required="required" placeholder="内容をここに入力"></textarea>
+        <textarea name="description" required="required" placeholder="内容をここに入力"></textarea>
       </div>
       <div class="button-panel">
         <button type="submit" class="button">投稿</button>

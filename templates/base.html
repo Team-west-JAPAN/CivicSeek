@@ -31,9 +31,9 @@
 
       {% if user.is_authenticated %}
         <a href="{% url 'accounts:logout' %}" class="btn" type="button">ログアウト</a>
-        {% comment %} input は使うな! {% endcomment %}
-        {% comment %} リンクはaタグですること！ {% endcomment %}
-        {% comment %} css任せた {% endcomment %}
+        {% comment %}input は使うな!{% endcomment %}
+        {% comment %}リンクはaタグですること！{% endcomment %}
+        {% comment %}css任せた{% endcomment %}
       {% else %}
         <a href="{% url 'accounts:login' %}" class="btn">ログイン</a>
         <a href="{% url 'post' %}"><i class="bi bi-plus-lg">投稿</i></a>
