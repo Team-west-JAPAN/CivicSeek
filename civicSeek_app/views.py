@@ -11,8 +11,8 @@ from topics.models import *
 def top(request):
     '''
     トップ画面をレンダリングする関数だから
-    とりあえず、html/beforelogin.htmlをレンダリングする
     今後はtop.htmlを新たに作って、それをレンダリングする
+    top.htmlに移植完了
     '''
     topics = Topic.objects.all()  # 存在するすべての投稿された課題
     context = {
