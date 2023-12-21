@@ -25,8 +25,7 @@
       </a>
       <form method="POST" action="#" class="search_container">
         {% csrf_token %}
-        <input type="text" size="25" placeholder="キーワード検索" name="keyword-search" />
-        <input type="submit" value="&#xf002" name="submit-btn-keyword-search" />
+        <input type="text" size="25" placeholder="キーワード検索" name="keyword-search" /> <input type="submit" value="&#xf002" name="submit-btn-keyword-search" />
       </form>
 
       {% if user.is_authenticated %}

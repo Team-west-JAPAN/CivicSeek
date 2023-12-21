@@ -6,7 +6,8 @@
 
   <form method="POST" action="">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {{ form.as_p }}
+
     <button type="submit" name="save_profile">保存</button>
   </form>
 {% endblock %}

@@ -21,10 +21,32 @@
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <!-- メインコンテンツの内容 -->
+
+  <!-- ツールバーを入れる -->
+  <aside class="sidebar">
+    <!-- サイドバーの内容 -->
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'accounts:profile_view' %}" id="profile-link">プロフィール</a>
+        </li>
+        <li>
+          <a href="#" id="settings-link">設定</a>
+        </li>
+        <li>
+          <a href="#" id="faq-link">よくある質問</a>
+        </li>
+        <li>
+          <a href="#" id="other-link">その他</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
   <div id="gridA" class="profile-grid">
     <div class="profile-item">
       <h3>ユーザー名</h3>
-      <p>ユーザーのユーザー名</p>
+      <p>{{ username }}</p>
     </div>
     <div class="profile-item">
       <h3>名前</h3>
@@ -32,14 +54,15 @@
     </div>
     <div class="profile-item">
       <h3>メールアドレス</h3>
-      <p>user@example.com</p>
+      <p>{{ email }}</p>
     </div>
     <div class="profile-item">
       <h3>Civicseek参加日</h3>
-      <p>2023年1月1日</p>
+      <p>{{ date_joined }}</p>
     </div>
-    <button class="edit-profile-button" onclick="location.href='/Users/chobi/Downloads/civicseek_front/html/edit_profile.html'">プロフィールを変更する</button>
+    <a href="{% url 'accounts:edit_profile_view' %}" class="edit-profile-button">プロフィールを変更する</a>
   </div>
+  {% comment %}
   <div id="gridB" style="display: none;">
     <h2>パスワード変更</h2>
     <form id="passwordChangeForm">
@@ -60,6 +83,7 @@
       </div>
     </form>
   </div>
+  {% endcomment %}
 {% endblock %}
 
 {% block footer %}

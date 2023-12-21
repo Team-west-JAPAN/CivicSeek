@@ -105,7 +105,7 @@ def edit_profile_view(request):
                 '''サニタイジングが通ったら
                 '''
                 form.save()
-                return redirect('accounts:profile_view')  # プロフィールページにリダイレクト
+                return redirect('toolbar')  # プロフィールページにリダイレクト
 
     form = CusomUserChangeForm(instance=request.user)
 
