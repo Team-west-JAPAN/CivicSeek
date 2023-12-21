@@ -157,7 +157,7 @@ def showpost(request, topic_id: int):
     return render(request, template_name, context={'topic': topic})
 
 
-def toolbar(request):
+def profile(request):
     '''
     この関数は作ってなかったな
     '''
@@ -168,7 +168,7 @@ def toolbar(request):
         'email': user.email,
     }
 
-    return render(request, 'html/toolbar.html', context=context)
+    return render(request, 'html/profile.html', context=context)
 
 
 # アカウント関連の話はaccountsに一任ってことで
