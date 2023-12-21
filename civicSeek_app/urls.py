@@ -8,4 +8,5 @@ urlpatterns = [
     path('ranking/', ranking, name='ranking'),
     path('showpost/<int:topic_id>/', showpost, name='showpost'),
     path('profile/', profile, name='profile'),
+    path('faq/', faq_view, name='faq'),
 ]

@@ -1,16 +1,16 @@
-{% extends 'toolbar_base.html' %}
+{% extends 'base.html' %}
 <!-- 以下のblockは使用しなくても消さないこと -->
 {% load static %}
 {% load django_bootstrap5 %}
 
 {% block title %}
   <!-- titleタグ等を入れる -->
-  <title>レスポンシブヘッダー</title>
+  <title>よくある質問</title>
 {% endblock %}
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -18,29 +18,33 @@
   <!-- ナビゲーションバー等 -->
 {% endblock %}
 
-{% block toolbar_content %}
+{% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <!-- メインコンテンツの内容 -->
 
-  <div id="gridA" class="profile-grid">
-    <div class="profile-item">
-      <h3>ユーザー名</h3>
-      <p>{{ username }}</p>
-    </div>
-    <div class="profile-item">
-      <h3>名前</h3>
-      <p>ユーザーの実名</p>
-    </div>
-    <div class="profile-item">
-      <h3>メールアドレス</h3>
-      <p>{{ email }}</p>
-    </div>
-    <div class="profile-item">
-      <h3>Civicseek参加日</h3>
-      <p>{{ date_joined }}</p>
-    </div>
-    <a href="{% url 'accounts:edit_profile_view' %}" class="edit-profile-button">プロフィールを変更する</a>
-  </div>
+  <!-- ツールバーを入れる -->
+  <aside class="sidebar">
+    <!-- サイドバーの内容 -->
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'accounts:profile_view' %}" id="profile-link">プロフィール</a>
+        </li>
+        <li>
+          <a href="#" id="settings-link">設定</a>
+        </li>
+        <li>
+          <a href="{% url 'faq' %}" id="faq-link">よくある質問</a>
+        </li>
+        <li>
+          <a href="#" id="other-link">その他</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  {% block toolbar_content %}
+
+  {% endblock %}
 {% endblock %}
 
 {% block footer %}
