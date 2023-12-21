@@ -12,7 +12,7 @@
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/beforelogin.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/top.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -33,10 +33,12 @@
   <div class="wrapper">
     {% for topic in topics %}
       <div class="post">
-        <p>{{ topic.title }}</p>
-        <p>{{ topic.description }}</p>
-        <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
-        <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
+        <a href="{% url 'showpost' topic.id %}">
+          <p>{{ topic.title }}</p>
+          <p>{{ topic.description }}</p>
+          <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
+          <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
+        </a>
       </div>
     {% endfor %}
   </div>
