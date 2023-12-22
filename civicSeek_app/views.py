@@ -158,6 +158,7 @@ def showpost(request, topic_id: int):
     return render(request, template_name, context={'topic': topic})
 
 
+@login_required
 def profile(request):
     '''
     この関数は作ってなかったな
