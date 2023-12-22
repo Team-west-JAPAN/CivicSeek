@@ -23,9 +23,10 @@
           <img src="https://team-west-japan.github.io/CivicSeek_static/png/test5.png" alt="logo" />
         </div>
       </a>
-      <form method="POST" action="#" class="search_container">
+      <form method="POST" class="search_container">
         {% csrf_token %}
-        <input type="text" size="25" placeholder="キーワード検索" name="keyword-search" /> <input type="submit" value="&#xf002" name="submit-btn-keyword-search" />
+        <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
+        <input type="submit" value="&#xf002" name="search-btn" />
       </form>
 
       {% if user.is_authenticated %}

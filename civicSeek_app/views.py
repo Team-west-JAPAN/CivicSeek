@@ -18,9 +18,7 @@ def top(request):
     # 一応これで動かす
     # topics = get_object_or_404(Topic) # 存在するすべての投稿された課題
     topics = Topic.objects.all()  # 存在するすべての投稿された課題
-    context = {
-        'topics': topics,
-    }
+
     if request.method == "POST":
         for topic in topics:
             '''
@@ -38,9 +36,14 @@ def top(request):
                 '''
                 pass
 
-        # return redirect(reverse('show_topic', args=[request.POST.get('topic_id')]))
+        if "search-btn" in request.POST:
+            '''検索ボタンが押されたら
+            '''
+            search_keyword = request.POST.get('search-keyword')  # 検索キーワード
+            topics = [
+                topic for topic in topics if (search_keyword in topic.description)]
 
-    return render(request, 'html/top.html', context=context)
+    return render(request, 'html/top.html', context={'topics': topics})
 
 
 @login_required
