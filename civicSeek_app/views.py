@@ -68,7 +68,7 @@ def post(request):
     # POST等が場合は以下を実行して、template_nameをレンダリング
     return render(request, template_name, context={"username": user.username})
 
-
+@login_required
 def postcomment(request, topic_id: int):
     '''
     コメント画面を投稿する関数だから

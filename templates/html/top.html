@@ -33,7 +33,7 @@
   <div class="wrapper">
     {% for topic in topics %}
       <div class="post">
-        <a href="{% url 'showpost' topic.id %}">
+        <a href="{% url 'create_comment' topic.id %}">
           <p>{{ topic.title }}</p>
           <p>{{ topic.description }}</p>
           <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>

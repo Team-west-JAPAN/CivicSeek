@@ -23,26 +23,25 @@
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <div class="post-and-comments-grid">
     <div class="post-section">
-      <h2>投稿タイトル</h2>
+      <h2>タイトル:{{ topic.title }}</h2>
 
-      <p>ここに投稿の詳細が表示されます。</p>
+      <p>{{ topic.description }}</p>
     </div>
     <div class="comments-section">
       <h3>コメント</h3>
-      <div class="comment">
-        <p>
-          <strong>ユーザー名:</strong> この投稿は素晴らしいです！
-        </p>
-      </div>
-      <div class="comment">
-        <p>
-          <strong>別のユーザー:</strong> 質問があります...
-        </p>
-      </div>
+      {% for comment in comments %}
+        <div class="comment">
+          <p>
+            <strong>ユーザー名:{{ comment.created_by }}</strong>
+            {{ comment.comment }}
+          </p>
+        </div>
+      {% endfor %}
       <!-- 他のコメントもここに追加 -->
       <form action="" method="POST">
-        <textarea placeholder="コメントを追加"></textarea>
-        <button type="button">送信</button>
+        {% csrf_token %}
+        <textarea name="comment" id="" cols="30" rows="10" placeholder="コメントを追加"></textarea>
+        <button type="submit">コメントを投稿</button>
       </form>
     </div>
   </div>
