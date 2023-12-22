@@ -23,11 +23,9 @@
           <img src="https://team-west-japan.github.io/CivicSeek_static/png/test5.png" alt="logo" />
         </div>
       </a>
-      <form method="POST" class="search_container">
-        {% csrf_token %}
-        <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
-        <input type="submit" value="&#xf002" name="search-btn" />
-      </form>
+      {% block searchForm %}
+        <!-- 検索フォームを入れる場所 topページのみに表示するから抜き取った。 -->
+      {% endblock %}
 
       {% if user.is_authenticated %}
         <a href="{% url 'accounts:logout' %}" class="btn" type="button">ログアウト</a>

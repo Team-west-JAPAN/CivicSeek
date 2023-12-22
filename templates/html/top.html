@@ -20,6 +20,14 @@
   <!-- ナビゲーションバー等 -->
 {% endblock %}
 
+{% block searchForm %}
+  <form method="POST" class="search_container">
+    {% csrf_token %}
+    <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
+    <input type="submit" value="&#xf002" name="search-btn" />
+  </form>
+{% endblock %}
+
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <ul>
