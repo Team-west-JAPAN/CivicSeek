@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
+
+{% block extraCssStyle %}
+
+{% endblock %}
+
 {% block main %}
   <div class="mb-3">
     <label for="" class="form-label">名前</label>
     <p class="form-control">{{ user.username }}</p>
     <label for="" class="form-label">メールアドレス</label>
     <p class="form-control">{{ user.email }}</p>
+    <label for="" class="form-label">ステータス</label>
+    {% if profile.is_student %}
+      <!-- 学生か否か -->
+      <p class="form-control">学生</p>
+    {% else %}
+      <p class="form-control">市民</p>
+    {% endif %}
   </div>
   <form action="" method="POST" class="mb-3">
     {% csrf_token %}

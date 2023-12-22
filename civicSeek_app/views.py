@@ -3,6 +3,7 @@ from general.views import *
 from ranking.views import *
 from topics.views import *
 from topics.models import *
+from civicSeek_app.models import *
 
 
 # Create your views here.
@@ -157,7 +158,7 @@ def showpost(request, topic_id: int):
     return render(request, template_name, context={'topic': topic})
 
 
-def toolbar(request):
+def profile(request):
     '''
     この関数は作ってなかったな
     '''
@@ -168,30 +169,13 @@ def toolbar(request):
         'email': user.email,
     }
 
-    return render(request, 'html/toolbar.html', context=context)
+    return render(request, 'html/profile.html', context=context)
 
 
-# アカウント関連の話はaccountsに一任ってことで
+def faq_view(request):
+    '''
+    よくある質問のリンク先
+    '''
+    faqs = Faq.objects.all()
 
-# def afterlogin(request):
-#     return render(request, 'afterlogin.html')
-#
-#
-# def beforelogin(request):
-#     return render(request, 'beforelogin.html')
-#
-#
-# def create_account_done(request):
-#     return render(request, 'create_account_done.html')
-#
-#
-# def create_an_account(request):
-#     return render(request, 'create_an_account.html')
-#
-#
-# def edit_profile(request):
-#     return render(request, 'edit_profile.html')
-#
-#
-# def login(request):
-#     return render(request, 'login.html')
+    return render(request, 'html/faq.html', context={'faqs': faqs})
