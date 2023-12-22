@@ -37,9 +37,12 @@
         <a href="{% url 'create_comment' topic.id %}">
           <p>{{ topic.title }}</p>
           <p>{{ topic.description }}</p>
-          <button class="btn btn-secondary"><i class="bi bi-heart"></i></button>
-          <button class="btn btn-secondary"><i class="bi bi-share"></i></button>
         </a>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-secondary" type="submit" name="like-btn-{{ topic.id }}"><i class="bi bi-heart">{{ topic.like_count }}</i></button>
+          <button class="btn btn-secondary" type="submit" name="share-btn-{{ topic.id }}"><i class="bi bi-share"></i></button>
+        </form>
       </div>
     {% endfor %}
   </div>

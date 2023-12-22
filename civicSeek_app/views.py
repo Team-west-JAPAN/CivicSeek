@@ -21,6 +21,24 @@ def top(request):
     context = {
         'topics': topics,
     }
+    if request.method == "POST":
+        for topic in topics:
+            '''
+            各トピックに関して以下の処理を行う
+            '''
+            if f"like-btn-{topic.id}" in request.POST:
+                '''いいねボタンが押された時
+                '''
+                topic.like_count += 1
+                topic.save()
+
+            if f"share-btn-{topic.id}" in request.POST:
+                '''シェアボタンが押された時
+                これはフロントエンドで処理したほうがいいかもね
+                '''
+                pass
+
+        # return redirect(reverse('show_topic', args=[request.POST.get('topic_id')]))
 
     return render(request, 'html/top.html', context=context)
 
@@ -67,6 +85,7 @@ def post(request):
 
     # POST等が場合は以下を実行して、template_nameをレンダリング
     return render(request, template_name, context={"username": user.username})
+
 
 @login_required
 def postcomment(request, topic_id: int):
