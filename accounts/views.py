@@ -14,7 +14,7 @@ from django.views import View
 from accounts.forms import SignUpForm, CustomLoginForm, CusomUserChangeForm
 from accounts.models import Profile
 from accounts.forms import ProfileEditForm
-from config.settings import LOGIN_REDIRECT_URL  # ログインをしたらリダイレクトするURL
+from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
 
 
 # Create your views here.
@@ -67,7 +67,7 @@ class CustomLogoutView(LogoutView):
     # ログアウト後のリダイレクト先を指定するためのget_success_urlメソッドをオーバーライドします。
     def get_success_url(self):
         # ログアウト後にリダイレクトしたいURLを指定します。
-        return reverse_lazy(LOGIN_REDIRECT_URL)  # このURLをカスタマイズしてください
+        return reverse_lazy(LOGOUT_REDIRECT_URL)  # このURLをカスタマイズしてください
 
 
 @login_required

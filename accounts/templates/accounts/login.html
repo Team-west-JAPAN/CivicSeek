@@ -25,7 +25,7 @@
     <form method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <!--  
+      <!--    
 
       <div class="form-item">
         <label for="email"></label>
@@ -36,21 +36,18 @@
         <input type="password" name="password" required="required" placeholder="パスワード" />
       </div>
 
-      -->
-
+        -->
 
       <div class="button-panel">
         <button type="submit" class="button">Sign In</button>
       </div>
-
     </form>
     <div class="form-footer">
       <p>
         <a href="{% url 'accounts:signup' %}">アカウントを作成する</a>
       </p>
       <p>
-        {% comment %}ここには必要なものを入れる{% endcomment %}
-        <a href="accounts:password_reset">パスワードを忘れましたか？</a>
+        <a href="{% url 'accounts:password_reset' %}">パスワードを忘れましたか？</a>
       </p>
     </div>
   </div>
