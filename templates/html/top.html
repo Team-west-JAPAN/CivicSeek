@@ -24,7 +24,8 @@
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <ul>
     <li>
-      <a href="#"><i class="bi bi-sort-down"></i>昇順</a>
+      <!-- 昇順の部分はランキング画面にしたぜよ -->
+      <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down">ランキング</i></a>
     </li>
     <li>
       <a href="#"><i class="bi bi-heart"></i>いいねした投稿</a>
