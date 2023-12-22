@@ -4,6 +4,7 @@ from ranking.views import *
 from topics.views import *
 from topics.models import *
 from civicSeek_app.models import *
+from accounts.models import *
 
 
 # Create your views here.
@@ -18,6 +19,7 @@ def top(request):
     # 一応これで動かす
     # topics = get_object_or_404(Topic) # 存在するすべての投稿された課題
     topics = Topic.objects.all()  # 存在するすべての投稿された課題
+    profile = Profile.objects.get(user=request.user)
 
     if request.method == "POST":
         for topic in topics:
@@ -27,14 +29,20 @@ def top(request):
             if f"like-btn-{topic.id}" in request.POST:
                 '''いいねボタンが押された時
                 '''
-                topic.like_count += 1
-                topic.save()
+                if topic in profile.liked_topics.all():
+                    '''いいね済みの場合
+                    '''
+                    # いいねした投稿を取り消し
+                    profile.liked_topics.remove(topic)
+                    # topic側のいいね数を-1する
+                    topic.like_count -= 1
+                else:
+                    # いいねした投稿に追加
+                    profile.liked_topics.add(topic)
+                    # topic側のいいね数を+1する
+                    topic.like_count += 1
 
-            if f"share-btn-{topic.id}" in request.POST:
-                '''シェアボタンが押された時
-                これはフロントエンドで処理したほうがいいかもね
-                '''
-                pass
+                topic.save()
 
         if "search-btn" in request.POST:
             '''検索ボタンが押されたら
@@ -202,3 +210,14 @@ def faq_view(request):
     faqs = Faq.objects.all()
 
     return render(request, 'html/faq.html', context={'faqs': faqs})
+
+
+@login_required
+def liked_topics(request):
+    '''いいねした投稿のリンク先ビュー
+    '''
+
+    profile = Profile.objects.get(user=request.user)
+    liked_topics = profile.liked_topics.all()
+
+    return render(request, 'html/liked_topics.html', context={'liked_topics': liked_topics})
