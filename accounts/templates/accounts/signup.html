@@ -1,13 +1,30 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
-
-
 {% block main %}
-<h2>会員登録</h2>
-<form method="post">
+  <h2>会員登録</h2>
+  <form method="post">
     {% csrf_token %}
-    {% bootstrap_form form %}
+    <label for="id_username">ユーザー名</label>
+    <p>
+      この項目は必須です。<br />
+      半角アルファベット、半角数字、@/./+/-/_ で150文字以下にしてください。
+    </p>
+    <div>{{ form.username }}</div>
+    {% comment %}formオブジェクトの部分はDjangoで読み込むとinputタグになる{% endcomment %}
+    <label for="id_email">メールアドレス</label>
+    <div>{{ form.email }}</div>
+    <label for="id_password1">パスワード</label>
+    <p>
+      あなたの他の個人情報と似ているパスワードにはできません。<br />
+      パスワードは最低 8 文字以上必要です。<br />
+      よく使われるパスワードにはできません。<br />
+      数字だけのパスワードにはできません。
+    </p>
+    <div>{{ form.password1 }}</div>
+    <label for="id_password2">パスワード(確認用)</label>
+    <p>確認のため、再度パスワードを入力してください。</p>
+    <div>{{ form.password2 }}</div>
     <button type="submit" class="btn btn-primary">送信</button>
-</form>
+  </form>
 {% endblock %}
