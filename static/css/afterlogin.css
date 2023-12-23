@@ -26,6 +26,7 @@
     color: white;
     text-decoration: none;
     line-height: 2.3em;
+    font-size: 30px;
 }
 
 /* レスポンシブ対応 */
@@ -44,6 +45,7 @@
 
     .nav ul li {
         margin-right: 30px;
+        fontsize
     }
     search_container, .post-button {
         width: 100%;
