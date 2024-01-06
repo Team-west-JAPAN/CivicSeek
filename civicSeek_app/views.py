@@ -10,6 +10,7 @@ from accounts.models import *
 # Create your views here.
 # このビューの目標 : 今まで作ってきたバックエンドのラッパーコードを作成し、構造を簡潔にする。
 
+@login_required
 def top(request):
     '''
     トップ画面をレンダリングする関数だから
