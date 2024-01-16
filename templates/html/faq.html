@@ -1,17 +1,16 @@
+{% extends 'toolbar_base.html' %}
 <!-- 以下のblockは使用しなくても消さないこと -->
-
-{% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
 
 {% block title %}
   <!-- titleタグ等を入れる -->
-  <title>課題表示画面</title>
+  <title>よくある質問</title>
 {% endblock %}
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/showpost.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -19,12 +18,20 @@
   <!-- ナビゲーションバー等 -->
 {% endblock %}
 
-{% block main %}
+{% block toolbar_content %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
-  <h1>タイトル</h1>
-  <p>{{ topic.title }}</p>
-  <h1>説明</h1>
-  <p>{{ topic.description }}</p>
+  <!-- メインコンテンツの内容 -->
+  <div class="faq">
+    <ul>
+      {% for faq in faqs %}
+        <h2>問</h2>
+        <p>{{ faq.question }}</p>
+        <h2>答え</h2>
+        <p>{{ faq.answer }}</p>
+        <small>{{ faq.created_at }}</small>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
 
 {% block footer %}
@@ -33,4 +40,5 @@
 
 {% block script %}
   <!-- javascriptを読み込むためのタグを入れる -->
+  <script src="https://team-west-japan.github.io/CivicSeek_static/js/toolbar.js"></script>
 {% endblock %}

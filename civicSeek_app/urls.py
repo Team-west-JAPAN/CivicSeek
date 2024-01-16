@@ -7,6 +7,7 @@ urlpatterns = [
     path('postdone/', postdone, name='postdone'),
     path('ranking/', ranking, name='ranking'),
     path('showpost/<int:topic_id>/', showpost, name='showpost'),
-    path('toolbar/', toolbar, name='toolbar'),
+    path('profile/', profile, name='profile'),
+    path('faq/', faq_view, name='faq'),
+    path('liked_count/', liked_topics, name='liked_topics'),
 ]
-

@@ -23,11 +23,9 @@
           <img src="https://team-west-japan.github.io/CivicSeek_static/png/test5.png" alt="logo" />
         </div>
       </a>
-      <form method="POST" action="#" class="search_container">
-        {% csrf_token %}
-        <input type="text" size="25" placeholder="キーワード検索" name="keyword-search" />
-        <input type="submit" value="&#xf002" name="submit-btn-keyword-search" />
-      </form>
+      {% block searchForm %}
+        <!-- 検索フォームを入れる場所 topページのみに表示するから抜き取った。 -->
+      {% endblock %}
 
       {% if user.is_authenticated %}
         <a href="{% url 'accounts:logout' %}" class="btn" type="button">ログアウト</a>
@@ -42,16 +40,23 @@
       <nav class="nav">
         <ul>
           <li>
-            <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
+            <a href="#" id="notificationIcon"><i class="fa fa-bell" aria-hidden="true"></i></a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
           </li>
           <li>
-            <a href="{% url 'toolbar' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            <a href="{% url 'profile' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
           </li>
         </ul>
       </nav>
+      <div id="modal" class="modal">
+        <!-- モーダルコンテンツ -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>通知の内容がここに表示されます。</p>
+        </div>
+      </div>
       {% block extraheader %}
 
       {% endblock %}
@@ -69,5 +74,7 @@
     {% block script %}
 
     {% endblock %}
+    {% comment %} <script src="https://team-west-japan.github.io/CivicSeek_static/js/afterlogin.js"></script> {% endcomment %}
+    <script src="{% static 'js/afterlogin.js' %}"></script>
   </body>
 </html>

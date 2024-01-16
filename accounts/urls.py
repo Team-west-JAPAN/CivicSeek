@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
 from .views import SignupView
 from django.contrib.auth.views import *
 from accounts.views import *
@@ -10,7 +10,8 @@ login_view = CustomLoginView.as_view()
 logout_view = LogoutView.as_view(
     template_name='accounts/logout.html', redirect_field_name='top')
 password_change_view = PasswordChangeView.as_view(
-    template_name='accounts/password_change.html')
+    template_name='accounts/password_change.html',
+    success_url=reverse_lazy('accounts:password_change_done'))
 password_change_done_view = PasswordChangeDoneView.as_view(
     template_name='accounts/password_change_done.html')
 password_reset_view = PasswordResetView.as_view(

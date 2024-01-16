@@ -8,10 +8,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from accounts.forms import ProfileEdit, SignUpForm, CustomLoginForm
-from config.settings import LOGIN_REDIRECT_URL # ログインをしたらリダイレクトするURL
+from accounts.forms import SignUpForm, CustomLoginForm, CusomUserChangeForm
+from accounts.models import Profile
+from accounts.forms import ProfileEditForm
+from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
 
 
 # Create your views here.
@@ -64,12 +67,16 @@ class CustomLogoutView(LogoutView):
     # ログアウト後のリダイレクト先を指定するためのget_success_urlメソッドをオーバーライドします。
     def get_success_url(self):
         # ログアウト後にリダイレクトしたいURLを指定します。
-        return reverse_lazy(LOGIN_REDIRECT_URL)  # このURLをカスタマイズしてください
+        return reverse_lazy(LOGOUT_REDIRECT_URL)  # このURLをカスタマイズしてください
 
 
+@login_required
 def profile_view(request):
     '''profileの表示をする
     '''
+    user = request.user
+    profile = Profile.objects.filter(user=user)
+
     if request.method == "POST":
         '''何かのボタンが押されたら
         '''
@@ -78,24 +85,28 @@ def profile_view(request):
             '''
             return redirect('accounts:edit_profile_view')
 
-    return render(request, 'accounts/profile.html', {'user': request.user})
+    return render(request, 'accounts/profile.html', {'user': user, 'profile': profile})
 
 
+@login_required
 def edit_profile_view(request):
     '''profileの編集ページ
     '''
+
     if request.method == 'POST':
-        '''何らかのボタンが押されたら
+        '''POSTを受け取ったら
         '''
         if "save_profile" in request.POST:
-            pass
-            form = ProfileEdit(request.POST, instance=request.user)
+            '''保存ボタンが押されたら
+            '''
+            form = CusomUserChangeForm(request.POST, instance=request.user)
+
             if form.is_valid():
+                '''サニタイジングが通ったら
+                '''
                 form.save()
-                return redirect('accounts:profile_view')  # プロフィールページにリダイレクト
-        else:
-            form = ProfileEdit(instance=request.user)  # ここは要検討
-    else:
-        form = ProfileEdit(instance=request.user)
+                return redirect('profile')  # プロフィールページにリダイレクト
+
+    form = CusomUserChangeForm(instance=request.user)
 
     return render(request, 'accounts/edit_profile.html', {'form': form})

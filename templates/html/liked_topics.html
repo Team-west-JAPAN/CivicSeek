@@ -7,7 +7,7 @@
 
 {% block title %}
   <!-- titleタグ等を入れる -->
-  <title>トップページ</title>
+  <title>いいねした投稿</title>
 {% endblock %}
 
 {% block extraCssStyle %}
@@ -20,27 +20,19 @@
   <!-- ナビゲーションバー等 -->
 {% endblock %}
 
-{% block searchForm %}
-  <form method="POST" class="search_container">
-    {% csrf_token %}
-    <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
-    <input type="submit" value="&#xf002" name="search-btn" />
-  </form>
-{% endblock %}
-
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <ul>
     <li>
       <!-- 昇順の部分はランキング画面にしたぜよ -->
-      <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down">ランキング</i></a>
+      <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down"></i>ランキング</a>
     </li>
     <li>
       <a href="{% url 'liked_topics' %}"><i class="bi bi-heart"></i>いいねした投稿</a>
     </li>
   </ul>
   <div class="wrapper">
-    {% for topic in topics %}
+    {% for topic in liked_topics %}
       <div class="post">
         <a href="{% url 'create_comment' topic.id %}">
           <p>{{ topic.title }}</p>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'toolbar_base.html' %}
 <!-- 以下のblockは使用しなくても消さないこと -->
 {% load static %}
 {% load django_bootstrap5 %}
@@ -10,7 +10,7 @@
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/toolbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -18,13 +18,14 @@
   <!-- ナビゲーションバー等 -->
 {% endblock %}
 
-{% block main %}
+{% block toolbar_content %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <!-- メインコンテンツの内容 -->
+
   <div id="gridA" class="profile-grid">
     <div class="profile-item">
       <h3>ユーザー名</h3>
-      <p>ユーザーのユーザー名</p>
+      <p>{{ username }}</p>
     </div>
     <div class="profile-item">
       <h3>名前</h3>
@@ -32,33 +33,13 @@
     </div>
     <div class="profile-item">
       <h3>メールアドレス</h3>
-      <p>user@example.com</p>
+      <p>{{ email }}</p>
     </div>
     <div class="profile-item">
       <h3>Civicseek参加日</h3>
-      <p>2023年1月1日</p>
+      <p>{{ date_joined }}</p>
     </div>
-    <button class="edit-profile-button" onclick="location.href='/Users/chobi/Downloads/civicseek_front/html/edit_profile.html'">プロフィールを変更する</button>
-  </div>
-  <div id="gridB" style="display: none;">
-    <h2>パスワード変更</h2>
-    <form id="passwordChangeForm">
-      <div class="form-item">
-        <label for="currentPassword">現在のパスワード</label>
-        <input type="password" id="currentPassword" name="currentPassword" required />
-      </div>
-      <div class="form-item">
-        <label for="newPassword">新しいパスワード</label>
-        <input type="password" id="newPassword" name="newPassword" required />
-      </div>
-      <div class="form-item">
-        <label for="confirmNewPassword">新しいパスワードの確認</label>
-        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required />
-      </div>
-      <div class="button-panel">
-        <input type="submit" value="変更を保存" />
-      </div>
-    </form>
+    <a href="{% url 'accounts:edit_profile_view' %}" class="edit-profile-button">プロフィールを変更する</a>
   </div>
 {% endblock %}
 
