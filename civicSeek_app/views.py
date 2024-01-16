@@ -19,8 +19,11 @@ def top(request):
     '''
     # 一応これで動かす
     # topics = get_object_or_404(Topic) # 存在するすべての投稿された課題
+    user = request.user  # ログインしているユーザーのオブジェクト
     topics = Topic.objects.all()  # 存在するすべての投稿された課題
-    profile = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(user=user)
+    all_notifications = user.notifications.all()
+    user_notifications = all_notifications.filter(is_read=False)
 
     if request.method == "POST":
         for topic in topics:
@@ -52,7 +55,8 @@ def top(request):
             topics = [
                 topic for topic in topics if (search_keyword in topic.description)]
 
-    return render(request, 'html/top.html', context={'topics': topics})
+    return render(request, 'html/top.html', context={
+        'topics': topics, 'username': user.username, 'user_notifications': user_notifications})
 
 
 @login_required
