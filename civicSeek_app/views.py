@@ -90,7 +90,7 @@ def post(request):
         topic = Topic.objects.create(
             title=title,
             description=description,
-            created_by=user  # ここは変更しないといけない
+            created_by=user,
         )
 
         # データベースに保存
