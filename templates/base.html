@@ -40,7 +40,7 @@
       <nav class="nav">
         <ul>
           <li>
-            <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
+            <a href="#" id="notificationIcon"><i class="fa fa-bell" aria-hidden="true"></i></a>
           </li>
           <li>
             <a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -74,5 +74,7 @@
     {% block script %}
 
     {% endblock %}
+    {% comment %} <script src="https://team-west-japan.github.io/CivicSeek_static/js/afterlogin.js"></script> {% endcomment %}
+    <script src="{% static 'js/afterlogin.js' %}"></script>
   </body>
 </html>
