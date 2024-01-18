@@ -6,7 +6,18 @@
 
   <form method="POST" action="">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div>
+      <label for="username">ユーザー名</label>
+      <input type="text" name="username" />
+    </div>
+    <div>
+      <label for="email">eメール</label>
+      <input type="text" name="email" />
+    </div>
+    <div>
+      <label for="password">パスワード</label>
+      <input type="password" name="password" />
+    </div>
 
     <button type="submit" name="save_profile">保存</button>
   </form>
