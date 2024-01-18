@@ -1,34 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load django_bootstrap5 %}
 
-{% block main %}
-  <h2>会員登録</h2>
-  <form method="post">
-    {% csrf_token %}
-    <label for="id_username">ユーザー名</label><br />
-    <div>{{ form.username }}</div>
-    <small>
-      この項目は必須です。<br />
-      半角アルファベット、半角数字、@/./+/-/_ で150文字以下にしてください。
-    </small><br />
-    <hr />
+{% block extraCssStyle %}
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+{% endblock %}
 
-    {% comment %}formオブジェクトの部分はDjangoで読み込むとinputタグになる{% endcomment %}
-    <label for="id_email">メールアドレス</label><br />
-    <div>{{ form.email }}</div>
-    <hr />
-    <label for="id_password1">パスワード</label><br />
-    <div>{{ form.password1 }}</div>
-    <small>
-      あなたの他の個人情報と似ているパスワードにはできません。<br />
-      パスワードは最低 8 文字以上必要です。<br />
-      よく使われるパスワードにはできません。<br />
-      数字だけのパスワードにはできません。
-    </small><br />
-    <hr />
-    <label for="id_password2">パスワード(確認用)</label><br />
-    <div>{{ form.password2 }}</div>
-    <small>確認のため、再度パスワードを入力してください。</small><br />
-    <button type="submit" class="btn btn-primary">送信</button>
-  </form>
+{% block main %}
+  <div class="form-wrapper">
+    <h2>会員登録</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div>
+        <label for="id_username">ユーザー名</label>
+        <div class="form-item">{{ form.username }}</div>
+        <small>
+          この項目は必須です。<br />
+          半角アルファベット、半角数字、@/./+/-/_ で150文字以下にしてください。
+        </small><br />
+      </div>
+
+      {% comment %}formオブジェクトの部分はDjangoで読み込むとinputタグになる{% endcomment %}
+      <label for="id_email">メールアドレス</label>
+      <div class="form-item">{{ form.email }}</div>
+
+      <label for="id_password1">パスワード</label>
+      <div class="form-item">{{ form.password1 }}</div>
+      <small>
+        あなたの他の個人情報と似ているパスワードにはできません。<br />
+        パスワードは最低 8 文字以上必要です。<br />
+        よく使われるパスワードにはできません。<br />
+        数字だけのパスワードにはできません。
+      </small><br />
+
+      <label for="id_password2">パスワード(確認用)</label>
+      <div class="form-item">{{ form.password2 }}</div>
+      <small>確認のため、再度パスワードを入力してください。</small><br />
+      <div class="button-panel">
+        <button type="submit" class="btn btn-primary">送信</button>
+      </div>
+    </form>
+  </div>
 {% endblock %}
