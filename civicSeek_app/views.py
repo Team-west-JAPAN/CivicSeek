@@ -77,6 +77,7 @@ def post(request):
         # リクエストから入力データを取得
         title = request.POST.get('title')
         description = request.POST.get('description')
+        tags = request.POST.get('tags')
 
         # バリデーション : タイトルと説明が空でないことを確認
         if not title or not description:
@@ -85,13 +86,18 @@ def post(request):
         # サニタイズ
         title = escape(title)
         description = escape(description)
+        tags = [escape(tag) for tag in tags.split(' ') if tag != ' ']
 
         # モデルインスタンスの生成
         topic = Topic.objects.create(
             title=title,
             description=description,
-            created_by=user  # ここは変更しないといけない
+            created_by=user,
         )
+
+        # タグの追加
+        for tag in tags:
+            topic.tags.add(tag)
 
         # データベースに保存
         topic.save()

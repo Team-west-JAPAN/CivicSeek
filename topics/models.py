@@ -3,18 +3,10 @@ from django.db import models
 from django.conf import settings
 # Create your models here.
 from django.contrib.auth import get_user_model
+from taggit.managers import TaggableManager
+
 
 UserModel = get_user_model()
-
-
-class Tag(models.Model):
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        db_table = "tags"
-
-    def __str__(self):
-        return self.name
 
 
 class Topic(models.Model):
@@ -30,8 +22,7 @@ class Topic(models.Model):
                                    default=None,
                                    null=True,
                                    blank=True)
-    tags = models.ManyToManyField(Tag,
-                                  verbose_name='タグ')  # ManyToManyはデフォでblank=Trueになってる
+    tags = TaggableManager(blank=True)
     like_count = models.IntegerField(default=0)
 
     class Meta:

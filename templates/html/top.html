@@ -13,6 +13,21 @@
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
   <link rel="stylesheet" href="{% static 'css/top.css' %}" />
+  <style>
+    .tag {
+      color: black;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 0.2em 0.5em;
+      background: #fff;
+      border: solid 1px black;
+      border-radius: 10px;
+      line-height: 1;
+      margin-right: 5px;
+      display: inline;
+      box-shadow: 2px 2px 5px black;
+    }
+  </style>
 {% endblock %}
 
 {% block extraheader %}
@@ -24,7 +39,8 @@
   <form method="POST" class="search_container">
     {% csrf_token %}
     <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
-    <input type="submit" value="&#xf002" name="search-btn" />
+    {% comment %} &#xf002; は虫眼鏡アイコンの文字コード {% endcomment %}
+    <input type="submit" value="&#xf002;" name="search-btn" />
   </form>
 {% endblock %}
 
@@ -45,6 +61,14 @@
         <a href="{% url 'create_comment' topic.id %}">
           <p>{{ topic.title }}</p>
           <p>{{ topic.description }}</p>
+          <p>
+            {% comment %}タグの表示{% endcomment %}
+            {% for tag in topic.tags.names %}
+              <div class="tag">
+                <small>{{ tag }}</small>
+              </div>
+            {% endfor %}
+          </p>
         </a>
         <form action="" method="POST">
           {% csrf_token %}
