@@ -39,7 +39,8 @@
   <form method="POST" class="search_container">
     {% csrf_token %}
     <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
-    <input type="submit" value="&#xf002" name="search-btn" />
+    {% comment %} &#xf002; は虫眼鏡アイコンの文字コード {% endcomment %}
+    <input type="submit" value="&#xf002;" name="search-btn" />
   </form>
 {% endblock %}
 
