@@ -16,6 +16,7 @@ from accounts.forms import SignUpForm, CustomLoginForm, CusomUserChangeForm
 from accounts.models import Profile
 from accounts.forms import ProfileEditForm
 from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
+from django.contrib.auth.hashers import make_password
 
 
 # Create your views here.
@@ -107,11 +108,11 @@ def edit_profile_view(request):
         if "save_profile" in request.POST:
             '''保存ボタンが押されたら
             '''
-            User.objects.filter(id=request.user.id).update(
-                username=username, email=email, password=password)
+            # パスワードのハッシュ化
+            hashed_pw = make_password(password)
+            get_user_model().objects.filter(id=request.user.id).update(
+                username=username, email=email, password=hashed_pw)
 
             return redirect('profile')  # プロフィールページにリダイレクト
 
-    user = User.objects.get(id=request.user.id)
-
-    return render(request, 'accounts/edit_profile.html', {'user': user})
+    return render(request, 'accounts/edit_profile.html', {'user': request.user})

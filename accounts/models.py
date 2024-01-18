@@ -32,18 +32,3 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-# class Notification(models.Model):
-#     '''ユーザーアカウントにone2oneで紐づいた通知を格納する
-#     '''
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     notification = models.TextField(max_length=500, blank=True)
-
-class Notification(models.Model):
-    '''ユーザーアカウントに紐づいた通知を格納する
-    '''
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='notifications')
-    title = models.CharField(max_length=255)
-    message = models.TextField()
-    date = models.DateTimeField(default=timezone.now)
-    is_read = models.BooleanField(default=False)
