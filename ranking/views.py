@@ -5,5 +5,5 @@ from topics.models import Topic
 
 
 def show_ranking(request):
-    topics = Topic.objects.all().order_by('-like_count')[:10]  # ランキングを上位10個出力
+    topics = Topic.objects.all().order_by('-like_count')[:3]  # ランキングを上位3個出力
     return render(request, 'html/ranking.html', context={'topics': topics})
