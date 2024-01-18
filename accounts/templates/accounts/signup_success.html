@@ -13,7 +13,7 @@
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
   <!-- ここのcssはどれになるのだ？ -->
-  <link rel="stylesheet" href="{% static 'css/create_done.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/signup_success.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -23,25 +23,13 @@
 
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
-  <div class="form-wrapper">
-    <h1>アカウント作成完了!</h1>
-    <a class="nav-link" href="{% url 'top' %}">HOME</a>
-
-    <!--     
-
-    <p>ご登録のメールアドレス宛に認証コードを送信しました。コードを以下に入力してください。</p>
-    <form action="/path/to/verification/script" method="post">
-      {% csrf_token %}
-      <div class="form-item">
-        <label for="verification-code">認証コード</label>
-        <input type="text" name="verification-code" required="required" placeholder="認証コード" />
-      </div>
-      <div class="button-panel">
-        <input type="submit" class="button" value="認証" />
-      </div>
-    </form>
-
-       -->
+  <div class="contaier">
+    <div class="scuccess-msg">
+      <h1>アカウント作成完了!</h1>
+    </div>
+    <div class="go-to-top-link">
+      <a class="nav-link" href="{% url 'top' %}">HOME</a>
+    </div>
   </div>
 {% endblock %}
 
