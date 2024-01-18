@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import *
 from django.contrib.auth.forms import *
+from django.contrib.auth import get_user_model
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -15,9 +16,13 @@ from accounts.forms import SignUpForm, CustomLoginForm, CusomUserChangeForm
 from accounts.models import Profile
 from accounts.forms import ProfileEditForm
 from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
+from django.contrib.auth.hashers import make_password
 
 
 # Create your views here.
+
+
+User = get_user_model()
 
 
 def signup_success(request):
@@ -96,17 +101,18 @@ def edit_profile_view(request):
     if request.method == 'POST':
         '''POSTを受け取ったら
         '''
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
         if "save_profile" in request.POST:
             '''保存ボタンが押されたら
             '''
-            form = CusomUserChangeForm(request.POST, instance=request.user)
+            # パスワードのハッシュ化
+            hashed_pw = make_password(password)
+            get_user_model().objects.filter(id=request.user.id).update(
+                username=username, email=email, password=hashed_pw)
 
-            if form.is_valid():
-                '''サニタイジングが通ったら
-                '''
-                form.save()
-                return redirect('profile')  # プロフィールページにリダイレクト
+            return redirect('profile')  # プロフィールページにリダイレクト
 
-    form = CusomUserChangeForm(instance=request.user)
-
-    return render(request, 'accounts/edit_profile.html', {'form': form})
+    return render(request, 'accounts/edit_profile.html', {'user': request.user})

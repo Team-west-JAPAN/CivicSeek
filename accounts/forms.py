@@ -37,4 +37,4 @@ class CusomUserChangeForm(UserChangeForm):
     '''
     class Meta:
         model = UserModel
-        fields = ('username', 'email', 'date_joined')
+        fields = ('username', 'email', 'date_joined','password')
