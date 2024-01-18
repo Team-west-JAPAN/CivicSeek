@@ -24,7 +24,7 @@
     {% if topics %}
       {% for topic in topics %}
         <span>{{ forloop.counter }}</span>位
-        <a href="{% url 'detail_topic' topic.id %}">{{ topic.title }}</a><br />
+        <a href="{% url 'create_comment' topic.id %}">{{ topic.title }}</a><br />
       {% endfor %}
     {% endif %}
   </div>
