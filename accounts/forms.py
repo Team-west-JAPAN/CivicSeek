@@ -20,7 +20,10 @@ class SignUpForm(UserCreationForm):
 class CustomLoginForm(AuthenticationForm):
     '''login用のform
     '''
-    username = forms.EmailField(label='Email')
+    username = forms.EmailField(label='Email', widget=forms.TextInput(
+        attrs={'placeholder': 'Email', 'type': 'email'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(
+        attrs={'placeholder': 'Password', 'type': 'password'}))
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -37,4 +40,4 @@ class CusomUserChangeForm(UserChangeForm):
     '''
     class Meta:
         model = UserModel
-        fields = ('username', 'email', 'date_joined','password')
+        fields = ('username', 'email', 'date_joined', 'password')
