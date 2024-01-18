@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from topics.models import Topic, Comment, Tag
+from topics.models import Topic, Comment
 
 # Create your views here.
 
