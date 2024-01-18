@@ -17,24 +17,59 @@
 {% block extraheader %}
   <!-- webページのヘッダー要素を入れる -->
   <!-- ナビゲーションバー等 -->
+  <style>
+    .tags {
+      margin-bottom: 10px;
+    }
+    .tag {
+      color: black;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 0.2em 0.5em;
+      background: #fff;
+      border: solid 1px black;
+      border-radius: 10px;
+      line-height: 1;
+      margin-right: 5px;
+      display: inline;
+      box-shadow: 2px 2px 5px black;
+    }
+    .comment {
+      border: solid 1px black;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 2px 2px 5px black;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      background-color: beige;
+    }
+  </style>
 {% endblock %}
 
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <div class="post-and-comments-grid">
     <div class="post-section">
-      <h2>タイトル:{{ topic.title }}</h2>
-
-      <p>{{ topic.description }}</p>
+      <h2>{{ topic.title }}</h2>
+      <div class="tags">
+        {% comment %}タグを入れる部分{% endcomment %}
+        {% for tag in topic.tags.names %}
+          <small class="tag">{{ tag }}</small>
+        {% endfor %}
+      </div>
+      {% comment %}投稿課題の内容を入れる部分{% endcomment %}
+      <div class="description">
+        <p>{{ topic.description }}</p>
+      </div>
     </div>
     <div class="comments-section">
       <h3>コメント</h3>
       {% for comment in comments %}
         <div class="comment">
-          <p>
-            <strong>ユーザー名:{{ comment.created_by }}</strong>
-            {{ comment.comment }}
-          </p>
+          <small>ユーザー:</small>
+          <strong>{{ comment.created_by }}</strong><br>
+          <small>コメント:</small>
+          <p>{{ comment.comment }}</p>
         </div>
       {% endfor %}
       <!-- 他のコメントもここに追加 -->
