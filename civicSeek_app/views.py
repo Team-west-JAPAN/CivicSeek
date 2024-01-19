@@ -205,9 +205,13 @@ def profile(request):
     この関数は作ってなかったな
     '''
     user = request.user
+    # ユーザデータに紐づいたprofileクラスのインスタンスを取得
+    profile = Profile.objects.get(user=user)
+
     context = {
         'username': user.username,
         'date_joined': user.date_joined,
+        'is_student': profile.is_student, # これはprofileのis_student
         'email': user.email,
     }
 

@@ -28,8 +28,12 @@
       <p>{{ username }}</p>
     </div>
     <div class="profile-item">
-      <h3>名前</h3>
-      <p>ユーザーの実名</p>
+      <h3>アカウントステータス</h3>
+      {% if is_student %}
+        <p>学生</p>
+      {% else %}
+        <p>地域住民</p>
+      {% endif %}
     </div>
     <div class="profile-item">
       <h3>メールアドレス</h3>

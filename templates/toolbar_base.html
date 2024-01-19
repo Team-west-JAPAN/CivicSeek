@@ -10,7 +10,6 @@
 
 {% block extraCssStyle %}
   <!-- cssを読み込むためのlinkタグを入れる -->
-  <link rel="stylesheet" href="{% static 'css/.css' %}" />
 {% endblock %}
 
 {% block extraheader %}
@@ -28,17 +27,23 @@
     <nav>
       <ul>
         <li>
-          <a href="{% url 'accounts:profile_view' %}" id="profile-link">プロフィール</a>
+          <a href="{% url 'profile' %}" id="profile-link">プロフィール</a>
         </li>
+        {% comment %}ここはコメントアウト{% endcomment %}
+        {% comment %}
         <li>
           <a href="#" id="settings-link">設定</a>
         </li>
+        {% endcomment %}
         <li>
           <a href="{% url 'faq' %}" id="faq-link">よくある質問</a>
         </li>
+        {% comment %}ここもコメントアウト{% endcomment %}
+        {% comment %}
         <li>
           <a href="#" id="other-link">その他</a>
         </li>
+        {% endcomment %}
       </ul>
     </nav>
   </aside>
