@@ -36,6 +36,18 @@
       <label for="id_password2">パスワード(確認用)</label>
       <div class="form-item">{{ form.password2 }}</div>
       <small>確認のため、再度パスワードを入力してください。</small><br />
+      <label for="">アカウントのステータス</label>
+      <div class="form-item">
+        <div>
+          <input type="radio" name="account-status" value="resident" required />
+          <label for="">住民</label>
+        </div>
+        <div>
+          <input type="radio" name="account-status" value="student" required />
+          <label for="">学生</label>
+        </div>
+      </div>
+
       <div class="button-panel">
         <button type="submit" class="btn btn-primary">送信</button>
       </div>

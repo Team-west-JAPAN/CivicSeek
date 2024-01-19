@@ -17,6 +17,7 @@ from accounts.models import Profile
 from accounts.forms import ProfileEditForm
 from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
 from django.contrib.auth.hashers import make_password
+from accounts.models import Profile
 
 
 # Create your views here.
@@ -60,6 +61,16 @@ class SignupView(CreateView):
         login(self.request, user)
         messages.add_message(self.request, messages.SUCCESS, "ユーザー登録しました。")
         self.object = user
+        profile = Profile.objects.get(user=user)
+
+        if self.request.method == "POST":
+            """
+            """
+            account_status = self.request.POST.get('account-status')
+            # アカウントが学生かどうか学生ならTrueをprofileDBに保存
+            profile.is_student = True if account_status == "student" else False
+            profile.save()
+
         # return HttpResponseRedirect(self.get_success_url())
         return render(request=self.request, template_name='accounts/signup_success.html')
 
