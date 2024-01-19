@@ -3,6 +3,8 @@
 {% comment %}topics : 投稿情報が格納されたのリスト{% endcomment %}
 
 {% load static %}
+{% comment %}表示するタグの数を制限するための自作テンプレートフィルター -> civicSeek_app/templatetags/custom_template_filter_for_topPage.py{% endcomment %}
+{% load custom_template_filter_for_topPage %}
 {% load django_bootstrap5 %}
 
 {% block title %}
@@ -46,23 +48,43 @@
   <div class="wrapper">
     {% for topic in topics %}
       <div class="post">
-        <a href="{% url 'create_comment' topic.id %}">
-          <p>{{ topic.title }}</p>
-          <p>{{ topic.description }}</p>
-          <p>
-            {% comment %}タグの表示{% endcomment %}
-            {% for tag in topic.tags.names %}
-              <div class="tag">
+        <div>
+          <a href="{% url 'create_comment' topic.id %}">
+            <div class="topic-title">
+              <h1>{{ topic.title }}</h1>
+            </div>
+            <dir class="topic-description">
+              {% comment %}topic.description >= 5の時に...で省略{% endcomment %}
+              <p>{{ topic.description|truncatechars:5 }}</p>
+            </dir>
+          </a>
+        </div>
+        <div class="tags-and-form-items">
+          <div class="topic-tags">
+            {% comment %}タグの表示数の上限を3つに設定{% endcomment %}
+            {% for tag in topic.tags.names|tag_limit:3 %}
+              <div class="topic-tag">
                 <small>{{ tag }}</small>
               </div>
             {% endfor %}
-          </p>
-        </a>
-        <form action="" method="POST">
-          {% csrf_token %}
-          <button class="btn btn-secondary" type="submit" name="like-btn-{{ topic.id }}"><i class="bi bi-heart">{{ topic.like_count }}</i></button>
-          <button class="btn btn-secondary" type="submit" name="share-btn-{{ topic.id }}"><i class="bi bi-share"></i></button>
-        </form>
+            {% comment %} 
+            vscodeでフォーマットすると以下のようになるけど、これは正しくないみたいです
+            `{% if (topic.tags.names|length) > 5 %}`
+            正しくは
+            {% if topic.tags.names|length > 5 %}
+            {% endcomment %}
+            {% if topic.tags.names|length > 3 %}
+              <div class="tag-ellipsis">...</div>
+            {% endif %}
+          </div>
+          <div>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-secondary" type="submit" name="like-btn-{{ topic.id }}"><i class="bi bi-heart">{{ topic.like_count }}</i></button>
+              <button class="btn btn-secondary" type="submit" name="share-btn-{{ topic.id }}"><i class="bi bi-share"></i></button>
+            </form>
+          </div>
+        </div>
       </div>
     {% endfor %}
   </div>

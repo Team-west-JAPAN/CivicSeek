@@ -101,7 +101,6 @@ ul li {
     /* Adjust as needed */
 }
 
-}
 
 /* 基本的なリセットとボックスサイジング */
 * {
@@ -125,21 +124,25 @@ ul li {
 
 /* 各グリッドアイテム */
 .wrapper>div {
-    background-color: #ffffff;
-    /* 白の背景色 */
-    border: 2px solid #e1e1e1;
-    /* ライトグレーの境界線 */
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: #333;
-    /* 濃いグレーのテキスト */
-    font-family: Arial, sans-serif;
-    /* モダンなフォント */
-    font-size: 1.2em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* ソフトな影を追加 */
+    padding: 20px 20px 20px 20px;
+    height: max-content;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -151,25 +154,9 @@ ul li {
     }
 }
 
-.post {
-    background-color: #ffffff;
-    /* 白の背景色 */
-    border: 2px solid #e1e1e1;
-    /* ライトグレーの境界線 */
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: #333;
-    /* 濃いグレーのテキスト */
-    font-family: Arial, sans-serif;
-    /* モダンなフォント */
-    font-size: 1.2em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-.post a {
-    text-decoration: none;
-}
+
+
 
 grid-container {
     position: relative;
@@ -201,19 +188,6 @@ grid-container {
     /* アイコンとテキストの間隔 */
 }
 
-.tag {
-    color: black;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 0.2em 0.5em;
-    background: #fff;
-    border: solid 1px black;
-    border-radius: 10px;
-    line-height: 1;
-    margin-right: 5px;
-    display: inline;
-    box-shadow: 1px 1px 1px black;
-}
 
 .search-box {
     display: flex;
@@ -249,4 +223,59 @@ grid-container {
 
 main a {
     text-decoration: none;
+}
+
+
+
+.post {
+    background-color: #ffffff;
+    /* 白の背景色 */
+    border: 2px solid #e1e1e1;
+    /* ライトグレーの境界線 */
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+    /* 濃いグレーのテキスト */
+    font-family: Arial, sans-serif;
+    /* モダンなフォント */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.post a {
+    text-decoration: none;
+}
+
+.topic-title {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-and-form-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic-tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 20%;
+}
+
+.topic-tag {
+    margin-left: 1rem;
+    border: 2px solid black;
+    padding: 0px 5px 0px 5px;
+    border-radius: 3px;
+}
+
+.tag-ellipsis {
+    margin-left: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
