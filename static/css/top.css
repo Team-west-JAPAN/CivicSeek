@@ -1,4 +1,3 @@
-
 input[type="button"] {
     background-color: rgb(255, 217, 50);
     /* 緑色の背景 */
@@ -213,7 +212,7 @@ grid-container {
     line-height: 1;
     margin-right: 5px;
     display: inline;
-    box-shadow: 2px 2px 5px black;
+    box-shadow: 1px 1px 1px black;
 }
 
 .search-box {
@@ -242,4 +241,12 @@ grid-container {
     justify-content: center;
     align-items: center;
     padding-top: 2px;
+}
+
+.ranking-link a {
+    text-decoration: none;
+}
+
+main a {
+    text-decoration: none;
 }
