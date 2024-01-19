@@ -55,7 +55,7 @@
             </div>
             <dir class="topic-description">
               {% comment %}topic.description >= 5の時に...で省略{% endcomment %}
-              <p>{{ topic.description|truncatechars:5 }}</p>
+              <p>{{ topic.description|truncatechars:15 }}</p>
             </dir>
           </a>
         </div>
@@ -68,10 +68,12 @@
               </div>
             {% endfor %}
             {% comment %} 
+
             vscodeでフォーマットすると以下のようになるけど、これは正しくないみたいです
-            `{% if (topic.tags.names|length) > 5 %}`
+            `{% if (topic.tags.names|length) > 3 %}`
             正しくは
-            {% if topic.tags.names|length > 5 %}
+            `{% if topic.tags.names|length > 3 %}`
+
             {% endcomment %}
             {% if topic.tags.names|length > 3 %}
               <div class="tag-ellipsis">...</div>
@@ -81,7 +83,10 @@
             <form action="" method="POST">
               {% csrf_token %}
               <button class="btn btn-secondary" type="submit" name="like-btn-{{ topic.id }}"><i class="bi bi-heart">{{ topic.like_count }}</i></button>
+              {% comment %} シェア機能は実装間に合わないので、コメントアウト {% endcomment %}
+              {% comment %} 
               <button class="btn btn-secondary" type="submit" name="share-btn-{{ topic.id }}"><i class="bi bi-share"></i></button>
+              {% endcomment %}
             </form>
           </div>
         </div>
