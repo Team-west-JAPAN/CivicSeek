@@ -113,7 +113,8 @@ ul li {
 .wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(150px, 1fr));
-    grid-template-rows: repeat(100, 200px);
+    /* 下の設定をしてしまうと100個の空のカードオブジェクトを言えれる部分ができてしまうのでコメントアウト */
+    /* grid-template-rows: repeat(100, 200px); */
     gap: 20px;
     /* グリッドアイテム間のギャップ */
     border-radius: 10px;
@@ -157,14 +158,6 @@ ul li {
 
 
 
-
-grid-container {
-    position: relative;
-}
-
-.grid-item {
-    /* ここにグリッドアイテムのスタイリング */
-}
 
 .icons {
     position: absolute;
