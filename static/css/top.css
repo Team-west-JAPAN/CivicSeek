@@ -257,3 +257,17 @@ grid-container {
     margin-right: 5px;
     /* アイコンとテキストの間隔 */
 }
+
+.tag {
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 0.2em 0.5em;
+    background: #fff;
+    border: solid 1px black;
+    border-radius: 10px;
+    line-height: 1;
+    margin-right: 5px;
+    display: inline;
+    box-shadow: 2px 2px 5px black;
+}
