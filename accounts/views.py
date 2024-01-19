@@ -3,18 +3,27 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import *
 from django.contrib.auth.forms import *
+from django.contrib.auth import get_user_model
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from accounts.forms import ProfileEdit, SignUpForm, CustomLoginForm
-from config.settings import LOGIN_REDIRECT_URL # ログインをしたらリダイレクトするURL
+from accounts.forms import SignUpForm, CustomLoginForm, CusomUserChangeForm
+from accounts.models import Profile
+from accounts.forms import ProfileEditForm
+from config.settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL  # ログインをしたらリダイレクトするURL
+from django.contrib.auth.hashers import make_password
+from accounts.models import Profile
 
 
 # Create your views here.
+
+
+User = get_user_model()
 
 
 def signup_success(request):
@@ -52,6 +61,16 @@ class SignupView(CreateView):
         login(self.request, user)
         messages.add_message(self.request, messages.SUCCESS, "ユーザー登録しました。")
         self.object = user
+        profile = Profile.objects.get(user=user)
+
+        if self.request.method == "POST":
+            """
+            """
+            account_status = self.request.POST.get('account-status')
+            # アカウントが学生かどうか学生ならTrueをprofileDBに保存
+            profile.is_student = True if account_status == "student" else False
+            profile.save()
+
         # return HttpResponseRedirect(self.get_success_url())
         return render(request=self.request, template_name='accounts/signup_success.html')
 
@@ -64,12 +83,16 @@ class CustomLogoutView(LogoutView):
     # ログアウト後のリダイレクト先を指定するためのget_success_urlメソッドをオーバーライドします。
     def get_success_url(self):
         # ログアウト後にリダイレクトしたいURLを指定します。
-        return reverse_lazy(LOGIN_REDIRECT_URL)  # このURLをカスタマイズしてください
+        return reverse_lazy(LOGOUT_REDIRECT_URL)  # このURLをカスタマイズしてください
 
 
+@login_required
 def profile_view(request):
     '''profileの表示をする
     '''
+    user = request.user
+    profile = Profile.objects.filter(user=user)
+
     if request.method == "POST":
         '''何かのボタンが押されたら
         '''
@@ -78,24 +101,29 @@ def profile_view(request):
             '''
             return redirect('accounts:edit_profile_view')
 
-    return render(request, 'accounts/profile.html', {'user': request.user})
+    return render(request, 'accounts/profile.html', {'user': user, 'profile': profile})
 
 
+@login_required
 def edit_profile_view(request):
     '''profileの編集ページ
     '''
-    if request.method == 'POST':
-        '''何らかのボタンが押されたら
-        '''
-        if "save_profile" in request.POST:
-            pass
-            form = ProfileEdit(request.POST, instance=request.user)
-            if form.is_valid():
-                form.save()
-                return redirect('accounts:profile_view')  # プロフィールページにリダイレクト
-        else:
-            form = ProfileEdit(instance=request.user)  # ここは要検討
-    else:
-        form = ProfileEdit(instance=request.user)
 
-    return render(request, 'accounts/edit_profile.html', {'form': form})
+    if request.method == 'POST':
+        '''POSTを受け取ったら
+        '''
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if "save_profile" in request.POST:
+            '''保存ボタンが押されたら
+            '''
+            # パスワードのハッシュ化
+            hashed_pw = make_password(password)
+            get_user_model().objects.filter(id=request.user.id).update(
+                username=username, email=email, password=hashed_pw)
+
+            return redirect('profile')  # プロフィールページにリダイレクト
+
+    return render(request, 'accounts/edit_profile.html', {'user': request.user})

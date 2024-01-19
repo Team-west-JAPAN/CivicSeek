@@ -13,7 +13,7 @@
     <!--bootstrap cdn-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'css/beforelogin.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block extraCssStyle %}
 
     {% endblock %}
@@ -25,35 +25,40 @@
           <img src="https://team-west-japan.github.io/CivicSeek_static/png/test5.png" alt="logo" />
         </div>
       </a>
-      <form method="POST" action="#" class="search_container">
-        {% csrf_token %}
-        <input type="text" size="25" placeholder="キーワード検索" name="keyword-search" />
-        <input type="submit" value="&#xf002" name="submit-btn-keyword-search" />
-      </form>
+      {% block searchForm %}
+        <!-- 検索フォームを入れる場所 topページのみに表示するから抜き取った。 -->
+      {% endblock %}
 
       {% if user.is_authenticated %}
-        <a href="{% url 'accounts:logout' %}" class="btn" type="button">ログアウト</a>
-        <a href="{% url 'post' %}"><i class="bi bi-plus-lg">投稿</i></a>
+        <a href="{% url 'accounts:logout' %}" class="btn logout-btn" type="button">ログアウト</a>
+        <a href="{% url 'post' %}" class="post-btn"><i class="bi bi-plus-lg">投稿</i></a>
         {% comment %}input は使うな!{% endcomment %}
         {% comment %}リンクはaタグですること！{% endcomment %}
         {% comment %}css任せた{% endcomment %}
       {% else %}
-        <a href="{% url 'accounts:login' %}" class="btn">ログイン</a>
+        <a href="{% url 'accounts:login' %}" class="login-btn">ログイン</a>
       {% endif %}
 
       <nav class="nav">
         <ul>
           <li>
-            <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
+            <a href="#" id="notificationIcon"><i class="fa fa-bell" aria-hidden="true"></i></a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
           </li>
           <li>
-            <a href="{% url 'toolbar' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            <a href="{% url 'profile' %}"><i class="fa fa-bars" aria-hidden="true"></i></a>
           </li>
         </ul>
       </nav>
+      {% comment %} <div id="modal" class="modal">
+        <!-- モーダルコンテンツ -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>通知の内容がここに表示されます。</p>
+        </div>
+      </div> {% endcomment %}
       {% block extraheader %}
 
       {% endblock %}
@@ -106,6 +111,8 @@
     {% block script %}
    
     {% endblock %}
+    {% comment %} <script src="https://team-west-japan.github.io/CivicSeek_static/js/afterlogin.js"></script> {% endcomment %}
+    <script src="{% static 'js/notification.js' %}"></script>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </html>

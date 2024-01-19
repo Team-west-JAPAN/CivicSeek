@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'civicSeek_app',  # フロントと合わせるためのラッパーコード
 
     'django_extensions',
+    'taggit', # タグをつける拡張機能
 ]
 
 MIDDLEWARE = [

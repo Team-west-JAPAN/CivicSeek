@@ -3,11 +3,14 @@ from general.views import *
 from ranking.views import *
 from topics.views import *
 from topics.models import *
+from civicSeek_app.models import *
+from accounts.models import *
 
 
 # Create your views here.
 # このビューの目標 : 今まで作ってきたバックエンドのラッパーコードを作成し、構造を簡潔にする。
 
+@login_required
 def top(request):
     '''
     トップ画面をレンダリングする関数だから
@@ -16,12 +19,44 @@ def top(request):
     '''
     # 一応これで動かす
     # topics = get_object_or_404(Topic) # 存在するすべての投稿された課題
+    user = request.user  # ログインしているユーザーのオブジェクト
     topics = Topic.objects.all()  # 存在するすべての投稿された課題
-    context = {
-        'topics': topics,
-    }
+    profile = Profile.objects.get(user=user)
+    # all_notifications = user.notifications.all()
+    # user_notifications = all_notifications.filter(is_read=False)
 
-    return render(request, 'html/top.html', context=context)
+    if request.method == "POST":
+        for topic in topics:
+            '''
+            各トピックに関して以下の処理を行う
+            '''
+            if f"like-btn-{topic.id}" in request.POST:
+                '''いいねボタンが押された時
+                '''
+                if topic in profile.liked_topics.all():
+                    '''いいね済みの場合
+                    '''
+                    # いいねした投稿を取り消し
+                    profile.liked_topics.remove(topic)
+                    # topic側のいいね数を-1する
+                    topic.like_count -= 1
+                else:
+                    # いいねした投稿に追加
+                    profile.liked_topics.add(topic)
+                    # topic側のいいね数を+1する
+                    topic.like_count += 1
+
+                topic.save()
+
+        if "search-btn" in request.POST:
+            '''検索ボタンが押されたら
+            '''
+            search_keyword = request.POST.get('search-keyword')  # 検索キーワード
+            topics = [
+                topic for topic in topics if (search_keyword in topic.description)]
+
+    return render(request, 'html/top.html', context={
+        'topics': topics, 'username': user.username})
 
 
 @login_required
@@ -42,6 +77,7 @@ def post(request):
         # リクエストから入力データを取得
         title = request.POST.get('title')
         description = request.POST.get('description')
+        tags = request.POST.get('tags')
 
         # バリデーション : タイトルと説明が空でないことを確認
         if not title or not description:
@@ -50,13 +86,18 @@ def post(request):
         # サニタイズ
         title = escape(title)
         description = escape(description)
+        tags = [escape(tag) for tag in tags.split(' ') if tag != ' ']
 
         # モデルインスタンスの生成
         topic = Topic.objects.create(
             title=title,
             description=description,
-            created_by=user  # ここは変更しないといけない
+            created_by=user,
         )
+
+        # タグの追加
+        for tag in tags:
+            topic.tags.add(tag)
 
         # データベースに保存
         topic.save()
@@ -68,6 +109,7 @@ def post(request):
     return render(request, template_name, context={"username": user.username})
 
 
+@login_required
 def postcomment(request, topic_id: int):
     '''
     コメント画面を投稿する関数だから
@@ -157,41 +199,40 @@ def showpost(request, topic_id: int):
     return render(request, template_name, context={'topic': topic})
 
 
-def toolbar(request):
+@login_required
+def profile(request):
     '''
     この関数は作ってなかったな
     '''
     user = request.user
+    # ユーザデータに紐づいたprofileクラスのインスタンスを取得
+    profile = Profile.objects.get(user=user)
+
     context = {
         'username': user.username,
         'date_joined': user.date_joined,
+        'is_student': profile.is_student, # これはprofileのis_student
         'email': user.email,
     }
 
-    return render(request, 'html/toolbar.html', context=context)
+    return render(request, 'html/profile.html', context=context)
 
 
-# アカウント関連の話はaccountsに一任ってことで
+def faq_view(request):
+    '''
+    よくある質問のリンク先
+    '''
+    faqs = Faq.objects.all()
 
-# def afterlogin(request):
-#     return render(request, 'afterlogin.html')
-#
-#
-# def beforelogin(request):
-#     return render(request, 'beforelogin.html')
-#
-#
-# def create_account_done(request):
-#     return render(request, 'create_account_done.html')
-#
-#
-# def create_an_account(request):
-#     return render(request, 'create_an_account.html')
-#
-#
-# def edit_profile(request):
-#     return render(request, 'edit_profile.html')
-#
-#
-# def login(request):
-#     return render(request, 'login.html')
+    return render(request, 'html/faq.html', context={'faqs': faqs})
+
+
+@login_required
+def liked_topics(request):
+    '''いいねした投稿のリンク先ビュー
+    '''
+
+    profile = Profile.objects.get(user=request.user)
+    liked_topics = profile.liked_topics.all()
+
+    return render(request, 'html/liked_topics.html', context={'liked_topics': liked_topics})

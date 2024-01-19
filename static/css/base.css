@@ -1,3 +1,13 @@
+/* reset */
+
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
 .header {
     background-color: #4086ee;
     color: white;
@@ -5,4 +15,109 @@
     justify-content: space-between;
     padding: 10px 20px;
     align-items: center;
+}
+
+.logout-btn {
+    text-decoration: none;
+    border: 0px solid #000;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+}
+
+.login-btn {
+    text-decoration: none;
+    border: 0px solid #000;
+    color: black;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+}
+
+.post-btn {
+    text-decoration: none;
+    color: black;
+    border: 0px solid #000;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+}
+
+.logo {
+    align-items: center;
+}
+
+.nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav ul li {
+    margin-right: 20px;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    line-height: 2.3em;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .logo {
+        align-self: start;
+    }
+
+    .nav ul {
+        flex-direction: row margin-top: 10px;
+    }
+
+    .nav ul li {
+        margin-right: 30px;
+    }
+
+    search_container,
+    .post-button {
+        width: 100%;
+        margin: 10px 0;
+        align-items: center;
+    }
+
+}
+
+input[type="button"] {
+    background-color: rgb(255, 217, 50);
+    /* 緑色の背景 */
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    /* パディングを少し小さくして大きく見せる */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    /* ボタンの角を丸くする */
+
+}
+
+input[type="button"]:hover {
+    background-color: #cbcbcb;
+    /* ホバー時に少し暗い緑色に変わる */
+}
+
+input[type="button"]:active {
+    background-color: #8c8c8c;
+    box-shadow: 0 5px #666;
+    /* クリック時に影を小さくする */
+    transform: translateY(4px);
+    /* クリック時に少し下に移動するように見せる */
 }

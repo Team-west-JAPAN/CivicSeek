@@ -17,32 +17,66 @@
 {% block extraheader %}
   <!-- webページのヘッダー要素を入れる -->
   <!-- ナビゲーションバー等 -->
+  <style>
+    .tags {
+      margin-bottom: 10px;
+    }
+    .tag {
+      color: black;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 0.2em 0.5em;
+      background: #fff;
+      border: solid 1px black;
+      border-radius: 10px;
+      line-height: 1;
+      margin-right: 5px;
+      display: inline;
+      box-shadow: 2px 2px 5px black;
+    }
+    .comment {
+      border: solid 1px black;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 2px 2px 5px black;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      background-color: beige;
+    }
+  </style>
 {% endblock %}
 
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
   <div class="post-and-comments-grid">
     <div class="post-section">
-      <h2>投稿タイトル</h2>
-
-      <p>ここに投稿の詳細が表示されます。</p>
+      <h2>{{ topic.title }}</h2>
+      <div class="tags">
+        {% comment %}タグを入れる部分{% endcomment %}
+        {% for tag in topic.tags.names %}
+          <small class="tag">{{ tag }}</small>
+        {% endfor %}
+      </div>
+      {% comment %}投稿課題の内容を入れる部分{% endcomment %}
+      <div class="description">
+        <p>{{ topic.description }}</p>
+      </div>
     </div>
     <div class="comments-section">
       <h3>コメント</h3>
-      <div class="comment">
-        <p>
-          <strong>ユーザー名:</strong> この投稿は素晴らしいです！
-        </p>
-      </div>
-      <div class="comment">
-        <p>
-          <strong>別のユーザー:</strong> 質問があります...
-        </p>
-      </div>
+      {% for comment in comments %}
+        <div class="comment">
+          <small>ユーザー:</small>
+          <strong>{{ comment.created_by }}</strong><br>
+          <small>コメント:</small>
+          <p>{{ comment.comment }}</p>
+        </div>
+      {% endfor %}
       <!-- 他のコメントもここに追加 -->
       <form action="" method="POST">
-        <textarea placeholder="コメントを追加"></textarea>
-        <button type="button">送信</button>
+        {% csrf_token %}
+        <textarea name="comment" id="" cols="30" rows="10" placeholder="コメントを追加"></textarea>
+        <button type="submit">コメントを投稿</button>
       </form>
     </div>
   </div>

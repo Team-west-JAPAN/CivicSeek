@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+<!-- 以下のblockは使用しなくても消さないこと -->
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+  <!-- titleタグ等を入れる -->
+  <title>よくある質問</title>
+{% endblock %}
+
+{% block extraCssStyle %}
+  <!-- cssを読み込むためのlinkタグを入れる -->
+{% endblock %}
+
+{% block extraheader %}
+  <!-- webページのヘッダー要素を入れる -->
+  <!-- ナビゲーションバー等 -->
+{% endblock %}
+
+{% block main %}
+  <!-- webページのコンテンツを入れる。mainタグの中身 -->
+  <!-- メインコンテンツの内容 -->
+
+  <!-- ツールバーを入れる -->
+  <aside class="sidebar">
+    <!-- サイドバーの内容 -->
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'profile' %}" id="profile-link">プロフィール</a>
+        </li>
+        {% comment %}ここはコメントアウト{% endcomment %}
+        {% comment %}
+        <li>
+          <a href="#" id="settings-link">設定</a>
+        </li>
+        {% endcomment %}
+        <li>
+          <a href="{% url 'faq' %}" id="faq-link">よくある質問</a>
+        </li>
+        {% comment %}ここもコメントアウト{% endcomment %}
+        {% comment %}
+        <li>
+          <a href="#" id="other-link">その他</a>
+        </li>
+        {% endcomment %}
+      </ul>
+    </nav>
+  </aside>
+  {% block toolbar_content %}
+
+  {% endblock %}
+{% endblock %}
+
+{% block footer %}
+  <!-- webページのフッター要素を入れる -->
+{% endblock %}
+
+{% block script %}
+  <!-- javascriptを読み込むためのタグを入れる -->
+  <script src="https://team-west-japan.github.io/CivicSeek_static/js/toolbar.js"></script>
+{% endblock %}

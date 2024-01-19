@@ -7,7 +7,7 @@
 
 {% block title %}
   <!-- titleタグ等を入れる -->
-  <title>トップページ</title>
+  <title>いいねした投稿</title>
 {% endblock %}
 
 {% block extraCssStyle %}
@@ -18,18 +18,6 @@
 {% block extraheader %}
   <!-- webページのヘッダー要素を入れる -->
   <!-- ナビゲーションバー等 -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-{% endblock %}
-
-{% block searchForm %}
-  <form method="POST">
-    {% csrf_token %}
-    <div class="search-box">
-      <input type="text" size="25" placeholder="キーワード検索" name="search-keyword" />
-      {% comment %}&#xf002; は虫眼鏡アイコンの文字コード{% endcomment %}
-      <button type="submit" name="search-btn" class="search-btn"><span class="material-symbols-outlined">search</span></button>
-    </div>
-  </form>
 {% endblock %}
 
 {% block main %}
@@ -37,26 +25,18 @@
   <ul>
     <li>
       <!-- 昇順の部分はランキング画面にしたぜよ -->
-      <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down">ランキング</i></a>
+      <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down"></i>ランキング</a>
     </li>
     <li>
       <a href="{% url 'liked_topics' %}"><i class="bi bi-heart"></i>いいねした投稿</a>
     </li>
   </ul>
   <div class="wrapper">
-    {% for topic in topics %}
+    {% for topic in liked_topics %}
       <div class="post">
         <a href="{% url 'create_comment' topic.id %}">
           <p>{{ topic.title }}</p>
           <p>{{ topic.description }}</p>
-          <p>
-            {% comment %}タグの表示{% endcomment %}
-            {% for tag in topic.tags.names %}
-              <div class="tag">
-                <small>{{ tag }}</small>
-              </div>
-            {% endfor %}
-          </p>
         </a>
         <form action="" method="POST">
           {% csrf_token %}
