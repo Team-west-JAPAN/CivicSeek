@@ -19,26 +19,67 @@
 
 {% block main %}
   <!-- webページのコンテンツを入れる。mainタグの中身 -->
-  <ul>
-    <li>
-      <h1>ランキング トップ10(yyyy/mm/dd~yyyy/mm/dd)</h1>
-    </li>
-  </ul>
-  <div class="container">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
+  <div class="py-3">
+      <div class="row">
+          <div class="col">
+              <div class="h1">Rankings</div>
+          </div>
+      </div>
   </div>
+  <div class="py-3">
+      <div class="container">
+          <div class="row gy-4">
+              <div class="col-lg-4 col-md-4">
+                  <div class="card shadow">
+                      <div class="card-body">
+                          <h4 class="card-title">Rank num</h4>
+                          <h6 class="card-subtitle text-muted">Task Detail</h6>
+                          <p class="card-text">Task Detail goes here.</p>
+                          <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
 
-  <div class="long-boxes">
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
-    <div class="long-box"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                  <div class="card shadow">
+                      <div class="card-body">
+                          <h4 class="card-title">Rank num</h4>
+                          <h6 class="card-subtitle text-muted">Task Detail</h6>
+                          <p class="card-text">Task Detail goes here.</p>
+                          <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                  <div class="card shadow">
+                      <div class="card-body">
+                          <h4 class="card-title">Rank num</h4>
+                          <h6 class="card-subtitle text-muted">Task Detail</h6>
+                          <p class="card-text">Task Detail goes here</p>
+                          <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <hr class="border border-black border-1 opacity-30">
+          <div class="row">
+              <div class="col-12">
+                  <div class="card shadow">
+                      <div class="card-body">
+                          <h4 class="card-title">Rank num</h4>
+                          <h6 class="card-subtitle text-muted">Task Detail</h6>
+                          <p class="card-text">Task Detail goes here</p>
+                          <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+  
 {% endblock %}
 
 {% block footer %}
