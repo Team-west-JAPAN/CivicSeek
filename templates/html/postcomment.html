@@ -47,12 +47,30 @@
           </div>
         {% endfor %}
       </div>
-      <!-- 他のコメントもここに追加 -->
-      <form action="" method="POST">
-        {% csrf_token %}
-        <textarea name="comment" id="" cols="30" rows="10" placeholder="コメントを追加"></textarea>
-        <button type="submit">コメントを投稿</button>
-      </form>
+      <!-- コメントフォームのモーダル（ポップアップ）を追加 -->
+      <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">コメントを追加</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <textarea name="comment" id="" cols="30" rows="10" placeholder="コメントを追加" class="form-control"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                <button type="submit" class="btn btn-primary">コメントを投稿</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ボタンまたはリンクトリガーの追加 -->
+      <button type="button" class="comment-post-popup-btn" data-bs-toggle="modal" data-bs-target="#commentModal">コメントを投稿</button>
     </div>
   </div>
 {% endblock %}
