@@ -74,9 +74,12 @@
       <div class="container-fluid py-3">
         <!-- Footer Contents -->
         <div class="row">
-          <div class="col-md-6">
+          {% comment %}直書きでstyle属性に中央にコピーライトを表示する設定を書いた{% endcomment %}
+          <div class="col-md" style="display: flex; justify-content: center;">
             <p class="mb-md-0">© 2024 DataDremers@KIT. All Rights Reserved.</p>
           </div>
+          {% comment %}SNSはやっていないのでコメントアウト{% endcomment %}
+          {% comment %}
           <div class="col-md-6 text-md-right">
             <!-- Facebook -->
             <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
@@ -87,6 +90,7 @@
             <!-- Google -->
             <a class="btn btn-link btn-floating btn-lg text-light m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
           </div>
+          {% endcomment %}
         </div>
       </div>
     </footer>

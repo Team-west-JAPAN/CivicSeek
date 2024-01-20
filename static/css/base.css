@@ -123,3 +123,13 @@ input[type="button"]:active {
 }
 
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: auto;
+}
+
+footer {
+    margin-top: auto;
+}
