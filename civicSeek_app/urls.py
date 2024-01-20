@@ -9,5 +9,4 @@ urlpatterns = [
     path('showpost/<int:topic_id>/', showpost, name='showpost'),
     path('profile/', profile, name='profile'),
     path('faq/', faq_view, name='faq'),
-    path('liked_count/', liked_topics, name='liked_topics'),
 ]

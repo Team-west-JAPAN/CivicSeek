@@ -55,6 +55,18 @@ def top(request):
             topics = [
                 topic for topic in topics if (search_keyword in topic.description)]
 
+        if "select-liked-topics" in request.POST:
+            '''いいねした投稿ボタンが押されたら
+
+            topicsの中身をいいねした投稿のみにする
+            '''
+            topics = profile.liked_topics.all()
+
+        if "all-topics" in request.POST:
+            '''すべての投稿ボタンが押されたら
+            '''
+            topics = Topic.objects.all()  # 存在するすべての投稿
+
     return render(request, 'html/top.html', context={
         'topics': topics, 'username': user.username})
 
@@ -211,7 +223,7 @@ def profile(request):
     context = {
         'username': user.username,
         'date_joined': user.date_joined,
-        'is_student': profile.is_student, # これはprofileのis_student
+        'is_student': profile.is_student,  # これはprofileのis_student
         'email': user.email,
     }
 
@@ -225,14 +237,3 @@ def faq_view(request):
     faqs = Faq.objects.all()
 
     return render(request, 'html/faq.html', context={'faqs': faqs})
-
-
-@login_required
-def liked_topics(request):
-    '''いいねした投稿のリンク先ビュー
-    '''
-
-    profile = Profile.objects.get(user=request.user)
-    liked_topics = profile.liked_topics.all()
-
-    return render(request, 'html/liked_topics.html', context={'liked_topics': liked_topics})

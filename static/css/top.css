@@ -272,3 +272,24 @@ main a {
     font-size: 1rem;
     font-weight: bold;
 }
+
+.shortcuts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.shortcuts>div{
+    margin: 5px 2rem 5px 1rem;
+}
+
+.topic-selector form button {
+    border-width: 0px;
+    background-color: transparent;
+    color: rgba(var(--bs-link-color-rgb));
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
