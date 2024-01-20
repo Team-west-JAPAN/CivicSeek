@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-# SECURITY WARNING: keep the secret key used in production secret!
-from .local import SECRET_KEY
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = get_random_secret_key()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com',
+                 'yoshiyuki140.pythonanywhere.com']
 
 
 # Application definition
@@ -48,7 +51,7 @@ INSTALLED_APPS = [
     'civicSeek_app',  # フロントと合わせるためのラッパーコード
 
     'django_extensions',
-    'taggit', # タグをつける拡張機能
+    'taggit',  # タグをつける拡張機能
 ]
 
 MIDDLEWARE = [
@@ -148,4 +151,16 @@ LOGIN_REDIRECT_URL = TOP_PAGE_NAME
 LOGOUT_REDIRECT_URL = TOP_PAGE_NAME
 
 # これは認証バックエンドの処理でemailを使うようにするための設定
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] 
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+# https関連の設定
+## 誤ってHTTPによりクッキーを送信してしまうのを防ぐ
+CSRF_COOKIE_SECURE = True
+## 誤ってHTTPによりセッションクッキーを送信してしまうのを防ぐ
+SESSION_COOKIE_SECURE = True
+
+
+try:
+    from .local_settings import *
+except:
+    pass
