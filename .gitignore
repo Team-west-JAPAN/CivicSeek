@@ -177,4 +177,5 @@ pyrightconfig.json
 
 /config/local.py
 /config/local_settings.py
+/conf
 .vscode/

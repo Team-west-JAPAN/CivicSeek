@@ -21,7 +21,7 @@ services:
     restart: always 
     # restart: unless-stopped 
     environment: 
-        DOMAINS: 'kuro-140.com -> http://web:80'
+        DOMAINS: 'kuro-140.com -> http://web:5000'
         #STAGE: 'local' 
         STAGE: 'production' 
         #FORCE_RENEW: 'true'

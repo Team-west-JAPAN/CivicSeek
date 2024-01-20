@@ -16,4 +16,5 @@ COPY . .
     # && apt-get clean \
     # Dockerイメージのサイズを小さくするためにキャッシュを削除
     # && rm -rf /var/lib/apt/lists/*\
-RUN pip3 install  -r requirements.txt
+RUN pip install  -r requirements.txt\
+	python manage.py migrate\
