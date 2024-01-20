@@ -6,7 +6,8 @@
     padding: 10px 20px;
     align-items: center;
 }
-.logo{
+
+.logo {
     align-items: center;
 }
 
@@ -32,24 +33,28 @@
         flex-direction: column;
         padding: 10px;
     }
-    .logo{
+
+    .logo {
         align-self: start;
     }
+
     .nav ul {
-        flex-direction:row
-        margin-top: 10px;
+        flex-direction: row margin-top: 10px;
     }
 
     .nav ul li {
         margin-right: 30px;
     }
-    search_container, .post-button {
+
+    search_container,
+    .post-button {
         width: 100%;
         margin: 10px 0;
-        align-items:center ;
+        align-items: center;
     }
 }
-.search_container{
+
+.search_container {
     box-sizing: border-box;
     position: relative;
     border: 1px solid #999;
@@ -60,17 +65,20 @@
     overflow: hidden;
     background: #fff;
     margin-right: 2em;
-  }
-  .search_container input[type="text"]{
+}
+
+.search_container input[type="text"] {
     border: none;
     height: 2.0em;
     color: #333;
     padding-left: 1em
-  }
-  .search_container input[type="text"]:focus {
+}
+
+.search_container input[type="text"]:focus {
     outline: 0;
-  }
-  .search_container input[type="submit"]{
+}
+
+.search_container input[type="submit"] {
     cursor: pointer;
     font-family: FontAwesome;
     font-size: 1.3em;
@@ -82,27 +90,41 @@
     height: 2.5em;
     right: 0;
     top: -10px;
-    outline : none;
-  }
+    outline: none;
+}
+
 .post-button {
-    background-color: rgb(255, 217, 50); /* ボタンの背景色 */
-    color: white; /* ボタンのテキスト色 */
-    padding: 10px 24px; /* ボタンのパディング */
-    border: none; /* ボタンの境界線を削除 */
-    cursor: pointer; /* マウスカーソルをポインタに変更 */
-    text-align: center; /* テキストを中央揃えに */
-    text-decoration: none; /* テキストの下線を削除 */
-    display: inline-block; /* ボタンをインラインブロック要素に */
-    font-size: 16px; /* フォントサイズを設定 */
-    margin: 4px 2px; /* マージンを設定 */
-    transition-duration: 0.4s; /* トランジションの時間を設定 */
+    background-color: rgb(255, 217, 50);
+    /* ボタンの背景色 */
+    color: white;
+    /* ボタンのテキスト色 */
+    padding: 10px 24px;
+    /* ボタンのパディング */
+    border: none;
+    /* ボタンの境界線を削除 */
+    cursor: pointer;
+    /* マウスカーソルをポインタに変更 */
+    text-align: center;
+    /* テキストを中央揃えに */
+    text-decoration: none;
+    /* テキストの下線を削除 */
+    display: inline-block;
+    /* ボタンをインラインブロック要素に */
+    font-size: 16px;
+    /* フォントサイズを設定 */
+    margin: 4px 2px;
+    /* マージンを設定 */
+    transition-duration: 0.4s;
+    /* トランジションの時間を設定 */
     margin-left: em;
 }
+
 ul li {
     display: inline-block;
     color: #333;
-    margin-right: 50px; /* Adjust as needed */
-  }
+    margin-right: 50px;
+    /* Adjust as needed */
+}
 
 /* 基本的なリセットとボックスサイジング */
 * {
@@ -110,24 +132,37 @@ ul li {
     margin: 0;
     padding: 0;
 }
+
 /* グリッドレイアウトのスタイル */
 .post-and-comments-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* 投稿セクションが大きく、コメントセクションが小さい */
+    grid-template-columns: 2fr 1fr;
+    /* 投稿セクションが大きく、コメントセクションが小さい */
     grid-gap: 20px;
     max-width: 800px;
     margin: auto;
     padding: 20px;
 }
 
-.post-section, .comments-section {
+.post-section {
+    display: grid;
+    grid-template-rows: 1fr 1fr 4fr;
+    height: 70vh;
+}
+
+.post-section,
+.comments-section {
     background-color: #f4f4f4;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.post-section h2, .comments-section h3 {
+.post-section>div>h2 {
+    margin-top: 0px;
+}
+
+.comments-section h3 {
     margin-top: 0;
 }
 
@@ -162,4 +197,76 @@ button {
 
 button:hover {
     background-color: #4cae4c;
+}
+
+.topic-title {
+    height: 50%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    height: 90%;
+    align-items: center;
+}
+
+.tag {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 0px 15px 0px 15px;
+    height: 30px;
+    border-radius: 15px;
+    margin: 2px 5px 2px 5px;
+    align-items: center;
+}
+
+.comment {
+    border: solid 1px black;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: beige;
+}
+
+.description {
+    display: flex;
+    border: solid 0px black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description p {
+    display: flex;
+    height: 90%;
+    width: 90%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+
+.comment-container {
+    height: 40vh;
+    /* viewportの高さの70% */
+    overflow-y: auto;
+    /* 縦方向のスクロールバーを有効化 */
+}
+
+.comment-container::-webkit-scrollbar {
+    display: none;
+    /* スクロールバーを非表示にする */
 }

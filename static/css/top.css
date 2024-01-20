@@ -127,6 +127,7 @@ ul li {
 .wrapper>div {
     padding: 20px 20px 20px 20px;
     height: max-content;
+    border: 0px;
 }
 
 
@@ -244,6 +245,12 @@ main a {
     padding: 2px;
     display: flex;
     flex-direction: column;
+    color: black;
+}
+
+.topic-description p {
+    margin-left: 1rem;
+    color: black;
 }
 
 .tags-and-form-items {
@@ -263,8 +270,9 @@ main a {
 .topic-tag {
     margin-left: 1rem;
     border: 2px solid black;
-    padding: 0px 5px 0px 5px;
-    border-radius: 3px;
+    padding: 0px 15px 0px 15px;
+    height: 30px;
+    border-radius: 15px;
 }
 
 .tag-ellipsis {
@@ -282,7 +290,7 @@ main a {
     align-items: center;
 }
 
-.shortcuts>div{
+.shortcuts>div {
     margin: 5px 2rem 5px 1rem;
 }
 
