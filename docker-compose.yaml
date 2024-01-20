@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:5000
+
+    volumes:
+      - .:/usr/src/app
+
+    ports:
+      - "80:5000"
+
+  https-portal: 
+    image: steveltn/https-portal:latest
+    ports: 
+        - '80:80' 
+        - '443:443' 
+    links: 
+        - web
+    restart: always 
+    # restart: unless-stopped 
+    environment: 
+        DOMAINS: 'kuro-140.com -> http://web:80'
+        #STAGE: 'local' 
+        STAGE: 'production' 
+        #FORCE_RENEW: 'true'
+    env_file:
+      - ./conf/conf.env
