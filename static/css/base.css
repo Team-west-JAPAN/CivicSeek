@@ -8,12 +8,29 @@ html {
     padding: 0px;
 }
 
+body {
+    margin: 0px;
+    min-height: 100vh;
+}
+
+header {
+    height: 10vh;
+}
+
+main {
+    min-height: 80vh;
+}
+
+footer {
+    height: 10vh;
+}
+
 .header {
     background-color: #4086ee;
     color: white;
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     align-items: center;
 }
 
@@ -60,7 +77,6 @@ html {
 .nav ul li a {
     color: white;
     text-decoration: none;
-    line-height: 2.3em;
 }
 
 /* レスポンシブ対応 */
@@ -122,14 +138,3 @@ input[type="button"]:active {
     /* クリック時に少し下に移動するように見せる */
 }
 
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: auto;
-}
-
-footer {
-    margin-top: auto;
-}
