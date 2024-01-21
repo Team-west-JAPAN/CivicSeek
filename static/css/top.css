@@ -112,6 +112,7 @@ ul li {
 /* メインコンテナ */
 .wrapper {
     display: grid;
+    min-height: 70vh;
     grid-template-columns: repeat(2, minmax(150px, 1fr));
     /* 下の設定をしてしまうと100個の空のカードオブジェクトを言えれる部分ができてしまうのでコメントアウト */
     /* grid-template-rows: repeat(100, 200px); */
@@ -132,22 +133,6 @@ ul li {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* メディアクエリ：モバイルデバイス用のスタイル調整 */
 @media (max-width: 600px) {
     .wrapper {
@@ -155,9 +140,6 @@ ul li {
         /* モバイルでは1列に */
     }
 }
-
-
-
 
 
 .icons {
@@ -182,6 +164,8 @@ ul li {
     /* アイコンとテキストの間隔 */
 }
 
+/* 検索ボックスのスタイリング */
+/* START */
 
 .search-box {
     display: flex;
@@ -199,6 +183,9 @@ ul li {
     width: 60%;
     border: none;
     background-color: #d9d9d9;
+
+    /* 入力時に出てくる枠線を削除 */
+    outline: none;
 }
 
 .search-btn {
@@ -210,6 +197,9 @@ ul li {
     align-items: center;
     padding-top: 2px;
 }
+
+/* END */
+
 
 .ranking-link a {
     text-decoration: none;
@@ -300,4 +290,9 @@ main a {
     color: rgba(var(--bs-link-color-rgb));
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+/* いいねボタンのホバー時のアニメーションをもっと長く */
+.btn-secondary {
+    transition: all 1s;
 }

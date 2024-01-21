@@ -8,12 +8,29 @@ html {
     padding: 0px;
 }
 
+body {
+    margin: 0px;
+    min-height: 100vh;
+}
+
+header {
+    height: 10vh;
+}
+
+main {
+    min-height: 80vh;
+}
+
+footer {
+    height: 10vh;
+}
+
 .header {
     background-color: #4086ee;
     color: white;
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     align-items: center;
 }
 
@@ -34,6 +51,8 @@ html {
     background-color: #d9d9d9;
 }
 
+/* 投稿ボタンのスタイリング */
+/* START */
 .post-btn {
     text-decoration: none;
     color: black;
@@ -41,7 +60,15 @@ html {
     padding: 5px 20px 5px 20px;
     border-radius: 10px;
     background-color: #d9d9d9;
+    transition: all 1s ease;
 }
+/* マウスオーバーしたときのスタイリング */
+.post-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* END */
 
 .logo {
     align-items: center;
@@ -60,7 +87,6 @@ html {
 .nav ul li a {
     color: white;
     text-decoration: none;
-    line-height: 2.3em;
 }
 
 /* レスポンシブ対応 */
@@ -82,7 +108,6 @@ html {
         margin-right: 30px;
     }
 
-    search_container,
     .post-button {
         width: 100%;
         margin: 10px 0;
@@ -122,14 +147,31 @@ input[type="button"]:active {
     /* クリック時に少し下に移動するように見せる */
 }
 
-
-body {
+/* 投稿がないときのトップページの画面スタイリング */
+/* START */
+.no-post {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    padding: auto;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
-footer {
-    margin-top: auto;
+/* メッセージ */
+.no-post h1 {
+    font-size: 12vh;
 }
+
+/* 投稿ボタン */
+.no-post>.post-btn {
+    border: 2px solid #000;
+    margin-top: 20px;
+    transition: all 1s ease;
+}
+/* マウスがボタンの上に来たとき(hoverのとき)のCSS設定上書き */
+.no-post>.post-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* END */
