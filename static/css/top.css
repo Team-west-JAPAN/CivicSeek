@@ -182,6 +182,8 @@ ul li {
     /* アイコンとテキストの間隔 */
 }
 
+/* 検索ボックスのスタイリング */
+/* START */
 
 .search-box {
     display: flex;
@@ -199,6 +201,9 @@ ul li {
     width: 60%;
     border: none;
     background-color: #d9d9d9;
+
+    /* 入力時に出てくる枠線を削除 */
+    outline: none;
 }
 
 .search-btn {
@@ -210,6 +215,9 @@ ul li {
     align-items: center;
     padding-top: 2px;
 }
+
+/* END */
+
 
 .ranking-link a {
     text-decoration: none;
