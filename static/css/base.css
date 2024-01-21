@@ -14,17 +14,14 @@ body {
 
 header {
     height: 10vh;
-    max-height: 10vh;
 }
 
 main {
-    max-height: 80vh;
-    min-height: 80vh;
+    min-height: 70vh;
 }
 
 footer {
-    max-height: 10vh;
-    min-height: 10vh;
+    height: 10vh;
 }
 
 .header {
@@ -90,6 +87,7 @@ footer {
 .nav ul li a {
     color: white;
     text-decoration: none;
+    font-size: 2rem;
 }
 
 /* レスポンシブ対応 */
