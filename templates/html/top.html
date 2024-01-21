@@ -41,13 +41,13 @@
       <!-- 昇順の部分はランキング画面にしたぜよ -->
       <a href="{% url 'show_ranking' %}"><i class="bi bi-sort-down"></i>ランキング</a>
     </div>
-    <dir class="topic-selector">
+    <div class="topic-selector">
       <form action="" method="POST">
         {% csrf_token %}
         <button type="submit" name="select-liked-topics"><i class="bi bi-heart"></i>いいねした投稿</button>
         <button type="submit" name="all-topics">すべての投稿</button>
       </form>
-    </dir>
+    </div>
   </div>
   {% if topics|length == 0 %}
     <div class="no-post">

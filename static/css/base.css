@@ -1,28 +1,30 @@
 /* reset */
-
+* {
+    margin: 0px;
+}
 
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    margin: 0px;
-    padding: 0px;
 }
 
 body {
     margin: 0px;
-    min-height: 100vh;
 }
 
 header {
     height: 10vh;
+    max-height: 10vh;
 }
 
 main {
+    max-height: 80vh;
     min-height: 80vh;
 }
 
 footer {
-    height: 10vh;
+    max-height: 10vh;
+    min-height: 10vh;
 }
 
 .header {
@@ -62,6 +64,7 @@ footer {
     background-color: #d9d9d9;
     transition: all 1s ease;
 }
+
 /* マウスオーバーしたときのスタイリング */
 .post-btn:hover {
     background-color: #000;
@@ -168,6 +171,7 @@ input[type="button"]:active {
     margin-top: 20px;
     transition: all 1s ease;
 }
+
 /* マウスがボタンの上に来たとき(hoverのとき)のCSS設定上書き */
 .no-post>.post-btn:hover {
     background-color: #000;
