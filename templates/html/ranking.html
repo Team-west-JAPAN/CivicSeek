@@ -23,7 +23,7 @@
   <div class="py-3">
     <div class="row">
       <div class="col">
-        <div class="h1">Rankings</div>
+        <div class="h1 text-center">Rankings</div>
       </div>
     </div>
   </div>
@@ -38,11 +38,15 @@
                   <h4 class="card-title">{{ forloop.counter }}位</h4>
                   <h6 class="card-subtitle text-muted">{{ topic.title }}</h6>
                   <p class="card-text">{{ topic.description }}</p>
-                  <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
+                  <a href="{% url 'create_comment' topic.id %}" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#detailModal" role="button">詳細を見る</a>
                 </div>
               </div>
             </div>
           {% endfor %}
+        {% else %}
+          <div class="col">
+            <div class="h1 text-center">No Topics</div>
+          </div>
         {% endif %}
 
         {% comment %}
