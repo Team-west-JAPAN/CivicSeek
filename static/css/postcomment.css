@@ -232,7 +232,7 @@ button:hover {
 
 
 .comment-container {
-    height: 40vh;
+    height: 52vh;
     /* viewportの高さの70% */
     overflow-y: auto;
     /* 縦方向のスクロールバーを有効化 */
@@ -243,4 +243,16 @@ button:hover {
     /* スクロールバーを非表示にする */
 }
 
-.comment-post-popup-btn {}
+.comment-post-popup-btn {
+
+}
+
+.btn-close:hover {
+    background-color: red;
+    color: white;
+}
+
+.comment-post-popup-btn-container {
+    display: flex;
+    flex-direction: column;
+}
