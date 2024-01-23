@@ -20,8 +20,8 @@ def top(request):
     # 一応これで動かす
     # topics = get_object_or_404(Topic) # 存在するすべての投稿された課題
     user = request.user  # ログインしているユーザーのオブジェクト
-    topics = Topic.objects.all()  # 存在するすべての投稿された課題
     profile = Profile.objects.get(user=user)
+    topics = Topic.objects.all().order_by('-created_at') # 存在するすべての投稿
     # all_notifications = user.notifications.all()
     # user_notifications = all_notifications.filter(is_read=False)
 
@@ -65,7 +65,8 @@ def top(request):
         if "all-topics" in request.POST:
             '''すべての投稿ボタンが押されたら
             '''
-            topics = Topic.objects.all()  # 存在するすべての投稿
+            topics = Topic.objects.all().order_by('-created_at') # 存在するすべての投稿
+
 
     return render(request, 'html/top.html', context={
         'topics': topics, 'username': user.username})

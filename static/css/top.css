@@ -173,7 +173,7 @@ ul li {
     border: 1px solid #999;
     box-shadow: 2px 2px 2px #ccc;
     padding: 5px 20px 5px 20px;
-    background-color: #d9d9d9;
+    background-color: #fff;
     border-radius: 20px;
     justify-content: space-between;
 }
@@ -182,7 +182,7 @@ ul li {
     padding: 1px;
     width: 60%;
     border: none;
-    background-color: #d9d9d9;
+    background-color: #fff;
 
     /* 入力時に出てくる枠線を削除 */
     outline: none;
@@ -190,7 +190,7 @@ ul li {
 
 .search-btn {
     border: none;
-    background-color: #d9d9d9;
+    background-color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
