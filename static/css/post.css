@@ -54,11 +54,23 @@
 .button-panel .button {
     width: 100%;
     padding: 10px 0;
+    background-color: #4086ee;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.button-panel .button[type="submit"] {
+    width: 100%;
+    padding: 10px 0;
     background-color: #5cb85c;
     border: none;
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .button:hover {
