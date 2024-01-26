@@ -71,12 +71,17 @@
           </div>
           <div class="tags-and-form-items">
             <div class="topic-tags">
-              {% comment %}タグの表示数の上限を3つに設定{% endcomment %}
-              {% for tag in topic.tags.names|tag_limit:3 %}
-                <div class="topic-tag">
-                  <small>{{ tag }}</small>
-                </div>
-              {% endfor %}
+              {% if topic.tags.names|length != 1 %}
+              {% comment %} 
+              タグが存在しないときの条件分岐
+              {% endcomment %}
+                {% for tag in topic.tags.names|tag_limit:3 %}
+                  {% comment %}タグの表示数の上限を3つに設定{% endcomment %}
+                  <div class="topic-tag">
+                    <small>{{ tag }}</small>
+                  </div>
+                {% endfor %}
+              {% endif %}
               {% comment %} 
 
               vscodeでフォーマットすると以下のようになるけど、これは正しくないみたいです
